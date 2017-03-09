@@ -9,11 +9,13 @@ import { BootstrapModalModule } from 'angular2-modal/plugins/bootstrap';
 import { AppComponent } from './app.component';
 
 // TODO: remove this component
+import { CalendarComponent } from "angular2-fullcalendar/src/calendar/calendar";
 import { FullCalenderComponent } from './full-calender/full-calender.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    CalendarComponent,
     FullCalenderComponent // TODO: remove this component
   ],
   imports: [

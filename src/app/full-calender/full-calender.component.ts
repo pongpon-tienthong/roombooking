@@ -1,8 +1,6 @@
-import { Component, OnInit, AfterViewInit, ViewContainerRef, HostListener } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewContainerRef } from '@angular/core';
 import { Overlay } from 'angular2-modal';
 import { Modal } from 'angular2-modal/plugins/bootstrap';
-
-declare var $: any;
 
 // TODO: remove this component
 @Component({
@@ -19,50 +17,86 @@ export class FullCalenderComponent implements OnInit {
   ngOnInit() {
   }
 
-  // @HostListener('#calendar:select', ['$event'])
+  calendarOptions: Object = {
+    header: {
+      left: 'prev,next today',
+      center: 'title',
+      right: 'listDay,listWeek,month,basicWeek,basicDay'
+    },
+    defaultDate: '2017-02-12',
+    navLinks: true, // can click day/week names to navigate views
+    editable: true,
+    eventLimit: true, // allow "more" link when too many events
+    selectable: true,
+    select: (start, end) => {
+      this.onTestModel();
+    },
+    events: [
+      {
+        title: 'All Day Event',
+        start: '2017-02-01'
+      },
+      {
+        title: 'Long Event',
+        start: '2017-02-07',
+        end: '2017-02-10'
+      },
+      {
+        id: 999,
+        title: 'Repeating Event',
+        start: '2017-02-09T16:00:00'
+      },
+      {
+        id: 999,
+        title: 'Repeating Event',
+        start: '2017-02-16T16:00:00'
+      },
+      {
+        title: 'Conference',
+        start: '2017-02-11',
+        end: '2017-02-13'
+      },
+      {
+        title: 'Meeting',
+        start: '2017-02-12T10:30:00',
+        end: '2017-02-12T12:30:00'
+      },
+      {
+        title: 'Lunch',
+        start: '2017-02-12T12:00:00'
+      },
+      {
+        title: 'Meeting',
+        start: '2017-02-12T14:30:00'
+      },
+      {
+        title: 'Happy Hour',
+        start: '2017-02-12T17:30:00'
+      },
+      {
+        title: 'Dinner',
+        start: '2017-02-12T20:00:00'
+      },
+      {
+        title: 'Birthday Party',
+        start: '2017-02-13T07:00:00'
+      },
+      {
+        title: 'Click for Google',
+        url: 'http://google.com/',
+        start: '2017-02-28'
+      }
+    ]
+  };
+
   onTestModel() {
-
-    console.log('onTestModel start');
-
     this.modal.alert()
       .size('lg')
+      .isBlocking(true)
       .showClose(true)
-      .title('A simple Alert style modal window')
-      .body(`
-            <h4>Alert is a classic (title/body/footer) 1 button modal window that 
-            does not block.</h4>
-            <b>Configuration:</b>
-            <ul>
-                <li>Non blocking (click anywhere outside to dismiss)</li>
-                <li>Size large</li>
-                <li>Dismissed with default keyboard key (ESC)</li>
-                <li>Close wth button click</li>
-                <li>HTML content</li>
-            </ul>`)
+      .keyboard(27)
+      .title('Hello World')
+      .body('A Customized Modal')
       .open();
-
-    console.log('onTestModel end');
-  }
-
-  ngAfterViewInit() {
-    $(document).ready( () => {
-      let calender = $('#calendar');
-      calender.fullCalendar({
-        header: {
-          left: 'prev,next today',
-          center: 'title',
-          right: 'month,agendaWeek,agendaDay'
-        },
-        selectable: true,
-        selectHelper: true,
-        editable: true,
-        eventLimit: true,
-
-        // select: (start, end) => {
-        //   console.log("===> select");
-        //   calender.fullCalendar('unselect');
-        // },
-      })
-    });
   }
 }
