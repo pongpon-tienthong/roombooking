@@ -10,13 +10,18 @@ import { AppComponent } from './app.component';
 
 // TODO: remove this component
 import { CalendarComponent } from "angular2-fullcalendar/src/calendar/calendar";
-import { FullCalenderComponent } from './full-calender/full-calender.component';
+import { FullCalenderComponent } from './full-calendar/full-calendar.component';
+import { AddEventModelComponent } from './full-calendar/add-event-model/add-event-model.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CalendarComponent,
-    FullCalenderComponent // TODO: remove this component
+    FullCalenderComponent,
+    AddEventModelComponent // TODO: remove this component
+  ],
+  entryComponents: [
+    AddEventModelComponent
   ],
   imports: [
     BrowserModule,

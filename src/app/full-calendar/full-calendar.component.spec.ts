@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FullCalenderComponent } from './full-calender.component';
+import { FullCalenderComponent } from './full-calendar.component';
 
 describe('FullCalenderComponent', () => {
   let component: FullCalenderComponent;

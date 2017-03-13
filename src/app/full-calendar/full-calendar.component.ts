@@ -1,12 +1,13 @@
 import { Component, OnInit, AfterViewInit, ViewContainerRef } from '@angular/core';
 import { Overlay } from 'angular2-modal';
 import { Modal } from 'angular2-modal/plugins/bootstrap';
+import { AddEventModelComponent } from './add-event-model/add-event-model.component';
 
 // TODO: remove this component
 @Component({
   selector: 'full-calender',
-  templateUrl: './full-calender.component.html',
-  styleUrls: ['./full-calender.component.css']
+  templateUrl: './full-calendar.component.html',
+  styleUrls: ['./full-calendar.component.css']
 })
 export class FullCalenderComponent implements OnInit {
 
@@ -21,7 +22,7 @@ export class FullCalenderComponent implements OnInit {
     header: {
       left: 'prev,next today',
       center: 'title',
-      right: 'listDay,listWeek,month,basicWeek,basicDay'
+      right: 'month,basicWeek,basicDay'
     },
     defaultDate: '2017-02-12',
     navLinks: true, // can click day/week names to navigate views
@@ -29,7 +30,7 @@ export class FullCalenderComponent implements OnInit {
     eventLimit: true, // allow "more" link when too many events
     selectable: true,
     select: (start, end) => {
-      this.onTestModel();
+      this.addEvent();
     },
     events: [
       {
@@ -89,14 +90,7 @@ export class FullCalenderComponent implements OnInit {
     ]
   };
 
-  onTestModel() {
-    this.modal.alert()
-      .size('lg')
-      .isBlocking(true)
-      .showClose(true)
-      .keyboard(27)
-      .title('Hello World')
-      .body('A Customized Modal')
-      .open();
+  addEvent() {
+    this.modal.open(AddEventModelComponent);
   }
 }
