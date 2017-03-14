@@ -1,8 +1,8 @@
-import { Component, OnInit, AfterViewInit, ViewContainerRef } from '@angular/core';
-import {Overlay, overlayConfigFactory} from 'angular2-modal';
-import {Modal, BSModalContext} from 'angular2-modal/plugins/bootstrap';
+import { Component, OnInit } from '@angular/core';
+import { overlayConfigFactory } from 'angular2-modal';
+import { Modal } from 'angular2-modal/plugins/bootstrap';
 import { AddEventModelComponent } from './add-event-model/add-event-model.component';
-import {AddEventModelContext} from "./add-event-model/add-event-model-context";
+import { AddEventModelContext } from "./add-event-model/add-event-model-context";
 
 // TODO: remove this component
 @Component({
