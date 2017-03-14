@@ -1,18 +1,19 @@
 import { Component, OnInit, AfterViewInit, ViewContainerRef } from '@angular/core';
-import { Overlay } from 'angular2-modal';
-import { Modal } from 'angular2-modal/plugins/bootstrap';
+import {Overlay, overlayConfigFactory} from 'angular2-modal';
+import {Modal, BSModalContext} from 'angular2-modal/plugins/bootstrap';
 import { AddEventModelComponent } from './add-event-model/add-event-model.component';
+import {AddEventModelContext} from "./add-event-model/add-event-model-context";
 
 // TODO: remove this component
 @Component({
   selector: 'full-calender',
   templateUrl: './full-calendar.component.html',
-  styleUrls: ['./full-calendar.component.css']
+  styleUrls: ['./full-calendar.component.css'],
+  providers: [Modal]
 })
 export class FullCalenderComponent implements OnInit {
 
-  constructor(overlay: Overlay, vcRef: ViewContainerRef, public modal: Modal) {
-    overlay.defaultViewContainer = vcRef;
+  constructor(public modal: Modal) {
   }
 
   ngOnInit() {
@@ -91,6 +92,6 @@ export class FullCalenderComponent implements OnInit {
   };
 
   addEvent() {
-    this.modal.open(AddEventModelComponent);
+    this.modal.open(AddEventModelComponent,  overlayConfigFactory({}, AddEventModelContext));
   }
 }

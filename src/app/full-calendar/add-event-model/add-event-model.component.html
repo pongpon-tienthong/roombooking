@@ -1,0 +1,254 @@
+<div class="panel panel-primary clearfix">
+  <div class="panel-heading"><h3 class="panel-title">Create New Event</h3></div>
+  <div class="panel-body">
+    <form action="/index.cfm?controller=bookings&amp;action=create" id="bookingform" method="post"
+          novalidate="novalidate" class="bv-form">
+      <button type="submit" class="bv-hidden-submit" style="display: none; width: 0px; height: 0px;"></button>
+      <input id="tempkey" name="tempkey" type="hidden" value="">
+      <div id="concurrencyCheckResult" data-checkurl="/index.cfm?controller=bookings&amp;action=check"></div>
+
+      <fieldset>
+        <legend>Event Details</legend>
+        <div class="row">
+          <div class="col-md-4">
+            <div class=" append">
+              <div class="form-group has-feedback"><label class="control-label" for="event-title">Event Title
+                *</label><input class="form-control" id="event-title" maxlength="500" name="event[title]" options=""
+                                placeholder="e.g My Meeting" required="" type="text" value=""
+                                data-bv-field="event[title]"><i class="form-control-feedback"
+                                                                data-bv-icon-for="event[title]"
+                                                                style="display: none;"></i>
+                <small class="help-block" data-bv-validator="notEmpty" data-bv-for="event[title]"
+                       data-bv-result="NOT_VALIDATED" style="display: none;">Please enter a value
+                </small>
+                <small class="help-block" data-bv-validator="stringLength" data-bv-for="event[title]"
+                       data-bv-result="NOT_VALIDATED" style="display: none;">Please enter a value with valid length
+                </small>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class=" append">
+              <div class="form-group"><label class="control-label" for="event-locationid">Location *</label><select
+                class="form-control" id="event-locationid" name="event[locationid]">
+                <option value="46">EPFL RACK</option>
+                <option value="39">Berlin</option>
+                <option value="44">High Valley</option>
+                <option value="43">Little Valley</option>
+                <option value="47">slot1</option>
+                <option value="45">E0604</option>
+              </select></div>
+            </div>
+          </div>
+          <div class="col-md-2">
+            <div class=" append">
+              <div class="form-group"><label class="control-label" for="event-layoutstyle">Layout</label><select
+                class="form-control" id="event-layoutstyle" name="event[layoutstyle]">
+                <option value="Standard">Standard</option>
+                <option value="Boardroom">Boardroom</option>
+                <option value="Lecture">Lecture</option>
+              </select></div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4">
+            <div class=" append">
+              <div class="form-group has-feedback"><label class="control-label" for="event-start">Starts *</label><input
+                class="form-control" data-date-format="DD MMM YYYY HH:mm" id="event-start" name="event[start]"
+                options="" placeholder="" required="" type="text" value="16 Mar 2017 16:00"
+                data-bv-field="event[start]"><i class="form-control-feedback" data-bv-icon-for="event[start]"
+                                                style="display: none;"></i>
+                <small class="help-block" data-bv-validator="notEmpty" data-bv-for="event[start]"
+                       data-bv-result="NOT_VALIDATED" style="display: none;">Please enter a value
+                </small>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class=" append">
+              <div class="form-group has-feedback"><label class="control-label" for="event-end">Ends *</label><input
+                class="form-control" data-date-format="DD MMM YYYY HH:mm" id="event-end" name="event[end]" options=""
+                placeholder="" required="" type="text" value="" data-bv-field="event[end]"><i
+                class="form-control-feedback" data-bv-icon-for="event[end]" style="display: none;"></i>
+                <small class="help-block" data-bv-validator="notEmpty" data-bv-for="event[end]"
+                       data-bv-result="NOT_VALIDATED" style="display: none;">Please enter a value
+                </small>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class=" append">
+              <label></label>
+              <div class="checkbox"><label for="event-allday"><input id="event-allday" name="event[allday]"
+                                                                     type="checkbox" value="1"><input
+                id="event-allday-checkbox" name="event[allday]($checkbox)" type="hidden" value="0">This is an all day
+                event</label></div>
+            </div>
+          </div>
+        </div>
+      </fieldset>
+      <div class=" append">
+        <div class="form-group"><label class="control-label" for="event-description">Description</label><textarea
+          class="form-control" id="event-description" name="event[description]" options=""
+          placeholder="Optional Notes about this event"></textarea></div>
+      </div>
+      <fieldset>
+        <legend>Contact Details</legend>
+        <div class="row">
+          <div class="col-sm-4">
+            <div class=" append">
+              <div class="form-group has-feedback"><label class="control-label" for="event-contactname">Contact
+                Name</label><input class="form-control" id="event-contactname" maxlength="255" name="event[contactname]"
+                                   options="" placeholder="e.g Joe Bloggs" type="text" value=""
+                                   data-bv-field="event[contactname]"><i class="form-control-feedback"
+                                                                         data-bv-icon-for="event[contactname]"
+                                                                         style="display: none;"></i>
+                <small class="help-block" data-bv-validator="stringLength" data-bv-for="event[contactname]"
+                       data-bv-result="NOT_VALIDATED" style="display: none;">Please enter a value with valid length
+                </small>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-4">
+            <div class=" append">
+              <div class="form-group has-feedback"><label class="control-label" for="event-contactno">Tel
+                No.</label><input class="form-control" id="event-contactno" maxlength="255" name="event[contactno]"
+                                  options="" placeholder="e.g 123123123" type="text" value=""
+                                  data-bv-field="event[contactno]"><i class="form-control-feedback"
+                                                                      data-bv-icon-for="event[contactno]"
+                                                                      style="display: none;"></i>
+                <small class="help-block" data-bv-validator="stringLength" data-bv-for="event[contactno]"
+                       data-bv-result="NOT_VALIDATED" style="display: none;">Please enter a value with valid length
+                </small>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-4">
+            <div class=" append">
+              <div class="form-group has-feedback"><label class="control-label"
+                                                          for="event-contactemail">Email</label><input
+                class="form-control" id="event-contactemail" maxlength="255" name="event[contactemail]" options=""
+                placeholder="e.g Joe@blogs.com" type="text" value="" data-bv-field="event[contactemail]"><i
+                class="form-control-feedback" data-bv-icon-for="event[contactemail]" style="display: none;"></i>
+                <small class="help-block" data-bv-validator="stringLength" data-bv-for="event[contactemail]"
+                       data-bv-result="NOT_VALIDATED" style="display: none;">Please enter a value with valid length
+                </small>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-6">
+            <div class=" append">
+              <label></label>
+              <div class="checkbox"><label for="event-emailcontact"><input id="event-emailcontact"
+                                                                           name="event[emailcontact]" type="checkbox"
+                                                                           value="1"><input
+                id="event-emailcontact-checkbox" name="event[emailcontact]($checkbox)" type="hidden" value="0">Send
+                Confirmation Email to Contact</label></div>
+            </div>
+          </div>
+        </div>
+      </fieldset>
+      <fieldset>
+        <legend>Bookable Resources</legend>
+        <table id="resourceTable" class="table table-condensed table-hover">
+          <tbody>
+          <tr>
+            <th>Audio Visual</th>
+            <td data-restrict="0,43" data-unique="11">
+              <div class="checkbox"><label for="event-eventresources--11-_delete"><input
+                id="event-eventresources--11-_delete" name="event[eventresources][,11][_delete]" type="checkbox"
+                value="0" disabled="disabled"><input id="event-eventresources--11-_delete-checkbox"
+                                                     name="event[eventresources][,11][_delete]($checkbox)" type="hidden"
+                                                     value="1" disabled="disabled">Projector</label></div>
+            </td>
+            <td>
+              <button type="button" class="pop btn btn-xs btn-default" data-toggle="popover" title=""
+                      data-content="Selection is restricted to certain locations"
+                      data-original-title="Location Restricted"><i class="glyphicon glyphicon-info-sign"></i></button>
+              <button type="button" class="pop btn btn-xs btn-default" data-toggle="popover" title=""
+                      data-content="Will not allow concurrent booking" data-original-title="Unique Item or Service"><i
+                class="glyphicon glyphicon-exclamation-sign"></i></button>
+            </td>
+            <td></td>
+          </tr>
+          <tr>
+            <th>Computers</th>
+            <td data-restrict="0,46" data-unique="13">
+              <div class="checkbox"><label for="event-eventresources--13-_delete"><input
+                id="event-eventresources--13-_delete" name="event[eventresources][,13][_delete]" type="checkbox"
+                value="0"><input id="event-eventresources--13-_delete-checkbox"
+                                 name="event[eventresources][,13][_delete]($checkbox)" type="hidden" value="1">3d
+                printer</label></div>
+            </td>
+            <td>
+              <button type="button" class="pop btn btn-xs btn-default" data-toggle="popover" title=""
+                      data-content="Selection is restricted to certain locations"
+                      data-original-title="Location Restricted"><i class="glyphicon glyphicon-info-sign"></i></button>
+              <button type="button" class="pop btn btn-xs btn-default" data-toggle="popover" title=""
+                      data-content="Will not allow concurrent booking" data-original-title="Unique Item or Service"><i
+                class="glyphicon glyphicon-exclamation-sign"></i></button>
+            </td>
+            <td></td>
+          </tr>
+          <tr>
+            <th>Furniture</th>
+            <td>
+              <div class="checkbox"><label for="event-eventresources--12-_delete"><input
+                id="event-eventresources--12-_delete" name="event[eventresources][,12][_delete]" type="checkbox"
+                value="0"><input id="event-eventresources--12-_delete-checkbox"
+                                 name="event[eventresources][,12][_delete]($checkbox)" type="hidden"
+                                 value="1">Chairs</label></div>
+            </td>
+            <td>
+            </td>
+            <td></td>
+          </tr>
+          </tbody>
+        </table>
+      </fieldset>
+      <fieldset>
+        <legend>Bulk Create Events</legend>
+        <div class="row">
+          <div class="col-md-2">
+            <div class="radio"><label for="repeat-none"><input checked="checked" id="repeat-none" name="repeat"
+                                                               type="radio" value="none">Don't Repeat</label></div>
+          </div>
+          <div class="col-md-2">
+            <div class="radio"><label for="repeat-week"><input id="repeat-week" name="repeat" type="radio" value="week">Weekly</label>
+            </div>
+          </div>
+          <div class="col-md-2">
+            <div class="radio"><label for="repeat-month"><input id="repeat-month" name="repeat" type="radio"
+                                                                value="month">Monthly</label></div>
+          </div>
+          <div class="col-md-3">
+            <div class="form-group"><label class="control-label" for="repeatno">How Many More Times?</label><select
+              class="form-control" id="repeatno" name="repeatno">
+              <option value=""></option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+              <option value="9">9</option>
+              <option value="10">10</option>
+              <option value="11">11</option>
+              <option value="12">12</option>
+              <option value="13">13</option>
+              <option value="14">14</option>
+              <option value="15">15</option>
+            </select></div>
+          </div>
+        </div>
+      </fieldset>
+      <input class="btn btn-block btn-primary btn-lg" type="submit" (click)="onSubmit()"
+             value="Create And Auto-approve Booking">
+    </form>
+  </div>
+</div>
