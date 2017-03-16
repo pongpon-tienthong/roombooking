@@ -1,6 +1,6 @@
 import { BSModalContext } from 'angular2-modal/plugins/bootstrap';
 
-export class AddEventModelContext extends BSModalContext {
+export class AddEventModalContext extends BSModalContext {
 
   constructor() {
     super();

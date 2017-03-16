@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AddEventModelComponent } from './add-event-model.component';
+import { AddEventModalComponent } from './add-event-modal.component';
 
-describe('AddEventModelComponent', () => {
-  let component: AddEventModelComponent;
-  let fixture: ComponentFixture<AddEventModelComponent>;
+describe('AddEventModalComponent', () => {
+  let component: AddEventModalComponent;
+  let fixture: ComponentFixture<AddEventModalComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AddEventModelComponent ]
+      declarations: [ AddEventModalComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AddEventModelComponent);
+    fixture = TestBed.createComponent(AddEventModalComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

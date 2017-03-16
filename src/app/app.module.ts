@@ -12,17 +12,17 @@ import { AppComponent } from './app.component';
 // TODO: remove this component
 import { CalendarComponent } from "angular2-fullcalendar/src/calendar/calendar";
 import { FullCalendarComponent } from './full-calendar/full-calendar.component';
-import { AddEventModelComponent } from './full-calendar/add-event-model/add-event-model.component';
+import { AddEventModalComponent } from './full-calendar/add-event-modal/add-event-modal.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CalendarComponent,
     FullCalendarComponent,
-    AddEventModelComponent // TODO: remove this component
+    AddEventModalComponent // TODO: remove this component
   ],
   entryComponents: [
-    AddEventModelComponent
+    AddEventModalComponent
   ],
   imports: [
     BrowserModule,

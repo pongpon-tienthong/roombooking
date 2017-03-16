@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { overlayConfigFactory } from 'angular2-modal';
 import { Modal } from 'angular2-modal/plugins/bootstrap';
-import { AddEventModelComponent } from './add-event-model/add-event-model.component';
-import { AddEventModelContext } from "./add-event-model/add-event-model-context";
+import { AddEventModalComponent } from './add-event-modal/add-event-modal.component';
+import { AddEventModalContext } from "./add-event-modal/add-event-modal-context";
 
 // TODO: remove this component
 @Component({
@@ -92,6 +92,6 @@ export class FullCalendarComponent implements OnInit {
   };
 
   addEvent() {
-    this.modal.open(AddEventModelComponent,  overlayConfigFactory({}, AddEventModelContext));
+    this.modal.open(AddEventModalComponent,  overlayConfigFactory({}, AddEventModalContext));
   }
 }

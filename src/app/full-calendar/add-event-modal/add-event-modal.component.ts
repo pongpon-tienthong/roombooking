@@ -1,21 +1,27 @@
-import {Component, AfterViewInit, OnInit} from '@angular/core';
+import { Component, AfterViewInit, OnInit } from '@angular/core';
 import { ModalComponent, DialogRef, CloseGuard } from "angular2-modal";
-import { AddEventModelContext } from "./add-event-model-context";
+import { AddEventModalContext } from "./add-event-modal-context";
 import { FormGroup, FormBuilder } from "@angular/forms";
+import { EventService } from "../shared/event.service";
 declare var $:any;
 
 @Component({
   selector: 'app-add-event-model',
-  templateUrl: './add-event-model.component.html',
-  styleUrls: ['./add-event-model.component.css']
+  templateUrl: 'add-event-modal.component.html',
+  styleUrls: ['add-event-modal.component.css'],
+  providers: [EventService]
 })
-export class AddEventModelComponent implements OnInit, AfterViewInit, CloseGuard, ModalComponent<AddEventModelContext> {
+export class AddEventModalComponent implements OnInit, AfterViewInit, CloseGuard, ModalComponent<AddEventModalContext> {
 
   openDialog: boolean;
   form: FormGroup;
+  addEvent: Event;
 
-  constructor(public dialog: DialogRef<AddEventModelContext>, public fb: FormBuilder) {
-  }
+  constructor(
+    public dialog: DialogRef<AddEventModalContext>,
+    private fb: FormBuilder,
+    private eventService: EventService
+  ) { }
 
   ngOnInit() {
     this.openDialog = true;
@@ -61,9 +67,9 @@ export class AddEventModelComponent implements OnInit, AfterViewInit, CloseGuard
   }
 
   // TODO: close modal when press ESC
-  // @HostListener('window:keydown', ['$event'])
-  // handleKeyboardEvent(event: KeyboardEvent) {
-  //   event.keyCode == 27 && this.closeDialog();
+  // @HostListener('window:keydown', ['$addEvent'])
+  // handleKeyboardEvent(addEvent: KeyboardEvent) {
+  //   addEvent.keyCode == 27 && this.closeDialog();
   // }
 
   beforeDismiss(): boolean {
@@ -75,6 +81,12 @@ export class AddEventModelComponent implements OnInit, AfterViewInit, CloseGuard
   }
 
   onSubmit() {
+    this.eventService.addEvent().subscribe(
+      res => {
+        this.addEvent = res;
+      }
+    );
+
     this.closeDialog();
   }
 
