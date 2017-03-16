@@ -29,6 +29,7 @@ export class AddEventModalComponent implements OnInit, AfterViewInit, CloseGuard
     this.buildForm();
   }
 
+  // TODO: Add form validation and validation effect
   buildForm(): void {
     this.form = this.fb.group({
       event: this.fb.group({
@@ -80,6 +81,7 @@ export class AddEventModalComponent implements OnInit, AfterViewInit, CloseGuard
     return this.openDialog;
   }
 
+  // TODO: Add loading animation and dialog for responses (success and err)
   onSubmit() {
     this.eventService.addEvent().subscribe(
       res => {
