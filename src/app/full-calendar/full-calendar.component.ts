@@ -6,12 +6,12 @@ import { AddEventModelContext } from "./add-event-model/add-event-model-context"
 
 // TODO: remove this component
 @Component({
-  selector: 'full-calender',
+  selector: 'full-calendar',
   templateUrl: './full-calendar.component.html',
   styleUrls: ['./full-calendar.component.css'],
   providers: [Modal]
 })
-export class FullCalenderComponent implements OnInit {
+export class FullCalendarComponent implements OnInit {
 
   constructor(public modal: Modal) {
   }

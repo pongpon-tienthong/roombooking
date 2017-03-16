@@ -6,17 +6,17 @@
     <h3 class="panel-title modal-title">Create New Event</h3>
   </div>
   <div class="modal-body panel-body">
-    <form action="" id="bookingform" method="post" novalidate="novalidate" class="bv-form">
+    <form id="bookingform"  class="bv-form" novalidate [formGroup]="form">
       <div id="concurrencyCheckResult"></div>
 
-      <fieldset>
+      <fieldset formGroupName="event">
         <legend>Event Details</legend>
         <div class="row">
           <div class="col-md-4">
             <div class=" append">
               <div class="form-group has-feedback">
                 <label class="control-label" for="event-title">Event Title *</label>
-                <input class="form-control" id="event-title" maxlength="500" name="event-title"
+                <input class="form-control" id="event-title" maxlength="500" formControlName="eventTitle"
                        placeholder="e.g My Meeting" required="" type="text" value="">
                 <!--TODO: Add validation effect-->
                 <!--<i class="glyphicon glyphicon-ok" style="display: none;"></i>-->
@@ -28,9 +28,9 @@
           <div class="col-md-4">
             <div class=" append">
               <div class="form-group">
-                <label class="control-label" for="event-locationid">Location *</label>
+                <label class="control-label" for="event-location-id">Location *</label>
                 <select
-                  class="form-control" id="event-locationid" name="event-locationid">
+                  class="form-control" id="event-location-id" formControlName="eventLocationId">
                   <option value="46">EPFL RACK</option>
                   <option value="39">Berlin</option>
                   <option value="44">High Valley</option>
@@ -44,12 +44,12 @@
           <div class="col-md-4">
             <div class=" append">
               <div class="form-group">
-                <label class="control-label" for="event-layoutstyle">Layout</label>
+                <label class="control-label" for="event-layout-style">Layout</label>
                 <select
-                  class="form-control" id="event-layoutstyle" name="event-layoutstyle">
-                  <option value="Standard">Standard</option>
-                  <option value="Boardroom">Boardroom</option>
-                  <option value="Lecture">Lecture</option>
+                  class="form-control" id="event-layout-style" formControlName="eventLayoutStyle">
+                  <option value="standard">Standard</option>
+                  <option value="boardroom">Boardroom</option>
+                  <option value="lecture">Lecture</option>
                 </select>
               </div>
             </div>
@@ -61,8 +61,8 @@
               <div class="form-group has-feedback">
                 <label class="control-label" for="event-start">Start *</label>
                 <div class='input-group date datetimepicker'>
-                  <input class="form-control" id="event-start"
-                         placeholder="" required="" type="text">
+                  <input class="form-control" id="event-start" formControlName="eventStart"
+                         placeholder="" required="" type="text" (blur)="setDateValue('eventStart', eventStart.value)" #eventStart>
                   <span class="input-group-addon">
                     <span class="glyphicon glyphicon-calendar"></span>
                   </span>
@@ -75,8 +75,8 @@
               <div class="form-group has-feedback">
                 <label class="control-label" for="event-end">End *</label>
                 <div class='input-group date datetimepicker'>
-                  <input class="form-control" id="event-end"
-                         placeholder="" required="" type="text">
+                  <input class="form-control" id="event-end" formControlName="eventEnd"
+                         placeholder="" required="" type="text" (blur)="setDateValue('eventEnd', eventEnd.value)" #eventEnd>
                   <span class="input-group-addon">
                     <span class="glyphicon glyphicon-calendar"></span>
                   </span>
@@ -88,11 +88,10 @@
             <div class=" append">
               <label></label>
               <div class="checkbox">
-                <label for="event-allday">
-                  <input id="event-allday" name="event-allday" type="checkbox" value="1">
-                  <!--<input id="event-allday-checkbox" name="event[allday]($checkbox)" type="hidden" value="0">-->
-                  This is an all day
-                  event
+                <label for="event-all-day">
+                  <input id="event-all-day" formControlName="eventAllDay" type="checkbox" value="1">
+                  <!--<input id="event-allday-checkbox" formControlName="event[allday]($checkbox)" type="hidden" value="0">-->
+                  This is an all day event
                 </label>
               </div>
             </div>
@@ -104,21 +103,21 @@
               <div class="form-group">
                 <label class="control-label" for="event-description">Description</label>
                 <textarea
-                  class="form-control" id="event-description" name="event-description"
+                  class="form-control" id="event-description" formControlName="eventDescription"
                   placeholder="Optional Notes about this event"></textarea>
               </div>
             </div>
           </div>
         </div>
       </fieldset>
-      <fieldset>
+      <fieldset formGroupName="contact">
         <legend>Contact Details</legend>
         <div class="row">
           <div class="col-sm-4">
             <div class=" append">
               <div class="form-group has-feedback">
-                <label class="control-label" for="event-contactname">Contact Name</label>
-                <input class="form-control" id="event-contactname" maxlength="255" name="event-contactname"
+                <label class="control-label" for="contact-name">Contact Name</label>
+                <input class="form-control" id="contact-name" maxlength="255" formControlName="contactName"
                        placeholder="e.g Joe Bloggs" type="text" value="">
                 <!--<i class="form-control-feedback" style="display: none;"></i>-->
                 <!--<small class="help-block" data-bv-validator="stringLength" data-bv-for="event[contactname]"-->
@@ -130,8 +129,8 @@
           <div class="col-sm-4">
             <div class=" append">
               <div class="form-group has-feedback">
-                <label class="control-label" for="event-contactno">Tel No.</label>
-                <input class="form-control" id="event-contactno" maxlength="255" name="event-contactno"
+                <label class="control-label" for="contact-no">Tel No.</label>
+                <input class="form-control" id="contact-no" maxlength="255" formControlName="contactNo"
                        placeholder="e.g 123123123" type="text" value="">
                 <!--<i class="form-control-feedback" style="display: none;"></i>-->
                 <!--<small class="help-block" data-bv-validator="stringLength" data-bv-for="event[contactno]"-->
@@ -143,9 +142,9 @@
           <div class="col-sm-4">
             <div class=" append">
               <div class="form-group has-feedback">
-                <label class="control-label" for="event-contactemail">Email</label>
+                <label class="control-label" for="contact-email">Email</label>
                 <input
-                  class="form-control" id="event-contactemail" maxlength="255" name="event-contactemail"
+                  class="form-control" id="contact-email" maxlength="255" formControlName="contactEmail"
                   placeholder="e.g Joe@blogs.com" type="text" value="">
                 <!--<i class="form-control-feedback" style="display: none;"></i>-->
                 <!--<small class="help-block" data-bv-validator="stringLength" data-bv-for="event[contactemail]"-->
@@ -160,11 +159,11 @@
             <div class=" append">
               <label></label>
               <div class="checkbox">
-                <label for="event-emailcontact">
-                  <input id="event-emailcontact"
-                         name="event-emailcontact" type="checkbox"
+                <label for="send-email">
+                  <input id="send-email"
+                         formControlName="sendEmail" type="checkbox"
                          value="1">
-                  <!--<input id="event-emailcontact-checkbox" name="event[emailcontact]($checkbox)" type="hidden" value="0">-->
+                  <!--<input id="event-emailcontact-checkbox" formControlName="event[emailcontact]($checkbox)" type="hidden" value="0">-->
                   Send Confirmation Email to Contact</label>
               </div>
             </div>
@@ -180,9 +179,9 @@
       <!--<th>Audio Visual</th>-->
       <!--<td data-restrict="0,43" data-unique="11">-->
       <!--<div class="checkbox"><label for="event-eventresources&#45;&#45;11-_delete"><input-->
-      <!--id="event-eventresources&#45;&#45;11-_delete" name="event[eventresources][,11][_delete]" type="checkbox"-->
+      <!--id="event-eventresources&#45;&#45;11-_delete" formControlName="event[eventresources][,11][_delete]" type="checkbox"-->
       <!--value="0" disabled="disabled"><input id="event-eventresources&#45;&#45;11-_delete-checkbox"-->
-      <!--name="event[eventresources][,11][_delete]($checkbox)" type="hidden"-->
+      <!--formControlName="event[eventresources][,11][_delete]($checkbox)" type="hidden"-->
       <!--value="1" disabled="disabled">Projector</label></div>-->
       <!--</td>-->
       <!--<td>-->
@@ -199,9 +198,9 @@
       <!--<th>Computers</th>-->
       <!--<td data-restrict="0,46" data-unique="13">-->
       <!--<div class="checkbox"><label for="event-eventresources&#45;&#45;13-_delete"><input-->
-      <!--id="event-eventresources&#45;&#45;13-_delete" name="event[eventresources][,13][_delete]" type="checkbox"-->
+      <!--id="event-eventresources&#45;&#45;13-_delete" formControlName="event[eventresources][,13][_delete]" type="checkbox"-->
       <!--value="0"><input id="event-eventresources&#45;&#45;13-_delete-checkbox"-->
-      <!--name="event[eventresources][,13][_delete]($checkbox)" type="hidden" value="1">3d-->
+      <!--formControlName="event[eventresources][,13][_delete]($checkbox)" type="hidden" value="1">3d-->
       <!--printer</label></div>-->
       <!--</td>-->
       <!--<td>-->
@@ -218,9 +217,9 @@
       <!--<th>Furniture</th>-->
       <!--<td>-->
       <!--<div class="checkbox"><label for="event-eventresources&#45;&#45;12-_delete"><input-->
-      <!--id="event-eventresources&#45;&#45;12-_delete" name="event[eventresources][,12][_delete]" type="checkbox"-->
+      <!--id="event-eventresources&#45;&#45;12-_delete" formControlName="event[eventresources][,12][_delete]" type="checkbox"-->
       <!--value="0"><input id="event-eventresources&#45;&#45;12-_delete-checkbox"-->
-      <!--name="event[eventresources][,12][_delete]($checkbox)" type="hidden"-->
+      <!--formControlName="event[eventresources][,12][_delete]($checkbox)" type="hidden"-->
       <!--value="1">Chairs</label></div>-->
       <!--</td>-->
       <!--<td>-->
@@ -230,13 +229,13 @@
       <!--</tbody>-->
       <!--</table>-->
       <!--</fieldset>-->
-      <fieldset>
+      <fieldset formGroupName="repeat">
         <legend>Bulk Create Events</legend>
         <div class="row">
           <div class="col-md-2">
             <div class="radio">
               <label for="repeat-none">
-                <input checked="checked" id="repeat-none" name="repeat" type="radio" value="none">
+                <input checked="checked" id="repeat-none" formControlName="repeat" type="radio" value="none">
                 Don't Repeat
               </label>
             </div>
@@ -244,7 +243,7 @@
           <div class="col-md-2">
             <div class="radio">
               <label for="repeat-week">
-                <input id="repeat-week" name="repeat" type="radio" value="week">
+                <input id="repeat-week" formControlName="repeat" type="radio" value="weekly">
                 Weekly
               </label>
             </div>
@@ -252,7 +251,7 @@
           <div class="col-md-2">
             <div class="radio">
               <label for="repeat-month">
-                <input id="repeat-month" name="repeat" type="radio" value="month">
+                <input id="repeat-month" formControlName="repeat" type="radio" value="monthly">
                 Monthly
               </label>
             </div>
@@ -263,7 +262,7 @@
                 How Many More Times?
               </label>
               <select
-                class="form-control" id="repeatno" name="repeatno">
+                class="form-control" id="repeatno" formControlName="repeatNo">
                 <option value=""></option>
                 <option value="1">1</option>
                 <option value="2">2</option>
@@ -277,10 +276,8 @@
                 <option value="10">10</option>
                 <option value="11">11</option>
                 <option value="12">12</option>
-                <option value="13">13</option>
-                <option value="14">14</option>
-                <option value="15">15</option>
-              </select></div>
+              </select>
+            </div>
           </div>
         </div>
       </fieldset>
@@ -289,5 +286,9 @@
       <input class="btn btn-block btn-primary btn-lg" type="submit" (click)="onSubmit()"
              value="Create And Auto-approve Booking">
     </div>
+  </div>
+
+  <div>
+    {{ form.value | json }}
   </div>
 </div>
