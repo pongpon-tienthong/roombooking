@@ -22,13 +22,16 @@
         "styles.css",
         "../node_modules/bootstrap/dist/css/bootstrap.min.css",
         "../node_modules/fullcalendar/dist/fullcalendar.min.css",
-        "../node_modules/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css"
+        "../node_modules/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css",
+        "../node_modules/admin-lte/dist/css/AdminLTE.min.css",
+        "../node_modules/admin-lte/dist/css/skins/skin-red.min.css"
       ],
       "scripts": [
         "../node_modules/jquery/dist/jquery.min.js",
         "../node_modules/moment/min/moment.min.js",
         "../node_modules/bootstrap/dist/js/bootstrap.min.js",
-        "../node_modules/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"
+        "../node_modules/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js",
+        "../node_modules/admin-lte/dist/js/app.min.js"
       ],
       "environmentSource": "environments/environment.ts",
       "environments": {
