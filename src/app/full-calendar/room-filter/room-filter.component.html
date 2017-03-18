@@ -15,9 +15,9 @@
       </div>
 
       <!-- the events -->
-      <div id="external-events">
+      <div id="external-events" [@visibilityChanged]="isLoading ? 'hidden': 'show'">
         <div *ngFor="let room of rooms;">
-          <button type="button" class="btn btn-block {{ room.btnColor }}">{{ room.name }}</button>
+          <button type="button" class="btn btn-block btn-room {{ room.btnColor }}">{{ room.name }}</button>
         </div>
       </div>
     </div>
