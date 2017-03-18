@@ -1,4 +1,4 @@
-import { Component, OnInit, trigger, state, transition, style, animate } from '@angular/core';
+import { Component, OnInit, trigger, state, transition, style, animate, EventEmitter, Output } from '@angular/core';
 import { RoomService } from "../shared/room.service";
 import { Room } from "../shared/room";
 
@@ -20,6 +20,9 @@ export class RoomFilterComponent implements OnInit {
   rooms: Room[] = [];
   allRoom: Room = new Room(0, 'All Rooms', 'bg-red', false);
   isLoading: boolean = true;
+  selectedRooms: number[];
+
+  @Output() onEmitRooms = new EventEmitter<number[]>();
 
   constructor(private roomService: RoomService) { }
 
@@ -55,5 +58,28 @@ export class RoomFilterComponent implements OnInit {
     }
 
     room.isSelected = !room.isSelected;
+    this.onSelectRoom();
+  }
+
+
+  onSelectRoom() {
+
+    this.selectedRooms = [];
+    this.rooms.forEach((room) => {
+
+      /**
+       * if 'All Rooms' btn is selected, then return all room ids.
+       */
+      if (this.rooms[0].isSelected) {
+         this.selectedRooms.push(room.id);
+         return;
+      }
+
+      if (room.isSelected) {
+        this.selectedRooms.push(room.id);
+      }
+    });
+
+    this.onEmitRooms.emit(this.selectedRooms);
   }
 }

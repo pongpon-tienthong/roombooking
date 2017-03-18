@@ -99,4 +99,8 @@ export class FullCalendarComponent implements OnInit {
   addEvent() {
     this.modal.open(AddEventModalComponent,  overlayConfigFactory({}, AddEventModalContext));
   }
+
+  onEmitRooms(roomIds: number[]) {
+    console.log(roomIds);
+  }
 }
