@@ -23,9 +23,14 @@ export class FullCalendarComponent implements OnInit {
     header: {
       left: 'prev,next today',
       center: 'title',
-      right: 'month,basicWeek,basicDay'
+      right: 'month,agendaWeek,agendaDay'
     },
-    defaultDate: '2017-02-12',
+    buttonText: {
+      today: 'Today',
+      month: 'Month',
+      week: 'Week',
+      day: 'Day'
+    },
     navLinks: true, // can click day/week names to navigate views
     editable: true,
     eventLimit: true, // allow "more" link when too many events
