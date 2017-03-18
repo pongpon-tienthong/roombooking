@@ -18,7 +18,7 @@ import { Room } from "../shared/room";
 export class RoomFilterComponent implements OnInit {
 
   rooms: Room[] = [];
-  allRoom: Room = new Room(0, 'All Rooms', 'bg-red');
+  allRoom: Room = new Room(0, 'All Rooms', 'bg-red', false);
   isLoading: boolean = true;
 
   constructor(private roomService: RoomService) { }
@@ -33,4 +33,27 @@ export class RoomFilterComponent implements OnInit {
     );
   }
 
+  selectRoom(room: Room) {
+
+    /**
+     * if 'All Rooms' btn is selected, then deselect other buttons.
+     */
+    if(room.id === 0 && !room.isSelected) {
+      this.rooms = this.rooms.map((room) => {
+        room.isSelected = false;
+        return room;
+      })
+    }
+
+    /**
+     * if any btn except 'All Rooms' btn is selected
+     * while 'All Rooms' btn is still selected,
+     * then deselect 'All Rooms' btn.
+     */
+    if(room.id !== 0 && this.rooms[0].isSelected) {
+      this.rooms[0].isSelected = false;
+    }
+
+    room.isSelected = !room.isSelected;
+  }
 }

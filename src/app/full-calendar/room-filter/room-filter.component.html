@@ -17,7 +17,10 @@
       <!-- the events -->
       <div id="external-events" [@visibilityChanged]="isLoading ? 'hidden': 'show'">
         <div *ngFor="let room of rooms;">
-          <button type="button" class="btn btn-block btn-room {{ room.btnColor }}">{{ room.name }}</button>
+          <button type="button" class="btn btn-block btn-room {{ room.btnColor }}" (click)="selectRoom(room)">
+            <span class="room-name pull-left">{{ room.name }}</span>
+            <i *ngIf="room.isSelected" class="fa fa-fw fa-check pull-right"></i>
+          </button>
         </div>
       </div>
     </div>
