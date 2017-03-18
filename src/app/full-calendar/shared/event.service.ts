@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { Event } from  './event';
 import {Http, Response} from "@angular/http";
 import 'rxjs/add/operator/map';
 import {Observable} from "rxjs";

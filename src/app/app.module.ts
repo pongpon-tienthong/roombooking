@@ -13,13 +13,15 @@ import { AppComponent } from './app.component';
 import { CalendarComponent } from "angular2-fullcalendar/src/calendar/calendar";
 import { FullCalendarComponent } from './full-calendar/full-calendar.component';
 import { AddEventModalComponent } from './full-calendar/add-event-modal/add-event-modal.component';
+import { RoomFilterComponent } from './full-calendar/room-filter/room-filter.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CalendarComponent,
     FullCalendarComponent,
-    AddEventModalComponent // TODO: remove this component
+    AddEventModalComponent,
+    RoomFilterComponent // TODO: remove this component
   ],
   entryComponents: [
     AddEventModalComponent

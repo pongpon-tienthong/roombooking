@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { overlayConfigFactory } from 'angular2-modal';
 import { Modal } from 'angular2-modal/plugins/bootstrap';
+import { RoomFilterComponent } from './room-filter/room-filter.component';
 import { AddEventModalComponent } from './add-event-modal/add-event-modal.component';
 import { AddEventModalContext } from "./add-event-modal/add-event-modal-context";
 
-// TODO: remove this component
 @Component({
   selector: 'full-calendar',
   templateUrl: './full-calendar.component.html',

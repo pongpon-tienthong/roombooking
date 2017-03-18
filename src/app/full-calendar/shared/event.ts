@@ -3,6 +3,8 @@ export class Event {
   // Event Detail
   eventId: number;
   title: string;
+
+  // TODO: change location to room
   locationName: string;
   locationId: number;
   layout: string;
