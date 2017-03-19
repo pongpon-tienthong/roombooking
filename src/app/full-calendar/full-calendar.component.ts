@@ -23,20 +23,25 @@ export class FullCalendarComponent implements OnInit {
     header: {
       left: 'prev,next today',
       center: 'title',
-      right: 'month,agendaWeek,agendaDay'
+      right: 'month,agendaWeek,listWeek,agendaDay'
     },
     buttonText: {
       today: 'Today',
       month: 'Month',
       week: 'Week',
+      listWeek: 'List',
       day: 'Day'
     },
+    contentHeight: 530,
     navLinks: true, // can click day/week names to navigate views
     editable: true,
     eventLimit: true, // allow "more" link when too many events
     selectable: true,
     select: (start, end) => {
       this.addEvent();
+    },
+    eventClick: (calEvent, jsEvent, view) => {
+      console.log("Click Event!!!");
     },
     events: [
       {
