@@ -4,6 +4,8 @@ import { Modal } from 'angular2-modal/plugins/bootstrap';
 import { RoomFilterComponent } from './room-filter/room-filter.component';
 import { AddEventModalComponent } from './add-event-modal/add-event-modal.component';
 import { AddEventModalContext } from "./add-event-modal/add-event-modal-context";
+import * as moment from 'moment/moment';
+
 
 @Component({
   selector: 'full-calendar',
@@ -17,6 +19,7 @@ export class FullCalendarComponent implements OnInit {
   }
 
   ngOnInit() {
+    console.log('Moment', moment().add(100, 'years').format('YYYY-MM-DD'));
   }
 
   calendarOptions: Object = {
@@ -42,6 +45,14 @@ export class FullCalendarComponent implements OnInit {
     },
     eventClick: (calEvent, jsEvent, view) => {
       console.log("Click Event!!!");
+    },
+    selectConstraint: {
+      start: moment().format('YYYY-MM-DD'),
+      end: moment().add(100, 'years').format('YYYY-MM-DD')
+    },
+    eventConstraint: {
+      start: moment().format('YYYY-MM-DD'),
+      end: moment().add(100, 'years').format('YYYY-MM-DD')
     },
     events: [
       {

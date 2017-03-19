@@ -8,8 +8,6 @@ import { ModalModule } from 'angular2-modal';
 import { BootstrapModalModule } from 'angular2-modal/plugins/bootstrap';
 
 import { AppComponent } from './app.component';
-
-// TODO: remove this component
 import { CalendarComponent } from "angular2-fullcalendar/src/calendar/calendar";
 import { FullCalendarComponent } from './full-calendar/full-calendar.component';
 import { AddEventModalComponent } from './full-calendar/add-event-modal/add-event-modal.component';
@@ -21,7 +19,7 @@ import { RoomFilterComponent } from './full-calendar/room-filter/room-filter.com
     CalendarComponent,
     FullCalendarComponent,
     AddEventModalComponent,
-    RoomFilterComponent // TODO: remove this component
+    RoomFilterComponent
   ],
   entryComponents: [
     AddEventModalComponent
