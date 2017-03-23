@@ -10,12 +10,12 @@
       </div>
     </div>
     <div class="box-body">
-      <div *ngIf="isLoading">
+      <div *ngIf="isInitRoomFilter">
         Loading . . .
       </div>
 
       <!-- the events -->
-      <div id="external-events" [@visibilityChanged]="isLoading ? 'hidden': 'show'">
+      <div id="external-events" [@visibilityChanged]="isInitRoomFilter ? 'hidden': 'show'">
         <div *ngFor="let room of rooms;">
           <button type="button" class="btn btn-block btn-room {{ room.btnColor }}" (click)="selectRoom(room)">
             <span class="room-name pull-left">{{ room.name }}</span>

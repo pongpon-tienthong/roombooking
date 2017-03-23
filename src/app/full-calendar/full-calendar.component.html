@@ -24,6 +24,12 @@
             <angular2-fullcalendar [options]="calendarOptions"></angular2-fullcalendar>
           </div>
         </div>
+
+        <!-- Loading (remove the following to stop the loading)-->
+        <div class="overlay" *ngIf="isRefreshing">
+          <i class="fa fa-refresh fa-spin"></i>
+        </div>
+        <!-- end loading -->
       </div>
     </div>
   </div>

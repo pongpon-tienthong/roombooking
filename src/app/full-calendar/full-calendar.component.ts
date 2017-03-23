@@ -1,25 +1,39 @@
-import { Component, OnInit } from '@angular/core';
-import { overlayConfigFactory } from 'angular2-modal';
-import { Modal } from 'angular2-modal/plugins/bootstrap';
-import { RoomFilterComponent } from './room-filter/room-filter.component';
-import { AddEventModalComponent } from './add-event-modal/add-event-modal.component';
-import { AddEventModalContext } from "./add-event-modal/add-event-modal-context";
+import {Component, OnInit, OnDestroy, ViewChild} from '@angular/core';
+import {overlayConfigFactory} from 'angular2-modal';
+import {Modal} from 'angular2-modal/plugins/bootstrap';
+import {AddEventModalComponent} from './add-event-modal/add-event-modal.component';
+import {AddEventModalContext} from "./add-event-modal/add-event-modal-context";
 import * as moment from 'moment/moment';
+import {EventService} from "./shared/event.service";
+import {Event} from "./shared/event";
+import {RoomFilterComponent} from "./room-filter/room-filter.component";
 
 
 @Component({
   selector: 'full-calendar',
   templateUrl: './full-calendar.component.html',
   styleUrls: ['./full-calendar.component.css'],
-  providers: [Modal]
+  providers: [Modal, EventService]
 })
-export class FullCalendarComponent implements OnInit {
+export class FullCalendarComponent implements OnInit, OnDestroy {
 
-  constructor(public modal: Modal) {
+  isRefreshing: boolean = true;
+  events: Event[] = [];
+
+  @ViewChild(RoomFilterComponent) roomFilterComp: RoomFilterComponent;
+
+  constructor(private modal: Modal,
+              private eventService: EventService) {
   }
 
   ngOnInit() {
-    console.log('Moment', moment().add(100, 'years').format('YYYY-MM-DD'));
+
+    // TODO: remove this when get events is ready/
+    this.isRefreshing = false;
+  }
+
+  // TODO: unsubscribe if necessary
+  ngOnDestroy(){
   }
 
   calendarOptions: Object = {
@@ -113,10 +127,31 @@ export class FullCalendarComponent implements OnInit {
   };
 
   addEvent() {
-    this.modal.open(AddEventModalComponent,  overlayConfigFactory({}, AddEventModalContext));
+    this.modal.open(AddEventModalComponent, overlayConfigFactory({}, AddEventModalContext));
   }
 
   onEmitRooms(roomIds: number[]) {
-    console.log(roomIds);
+
+    /**
+     * show loading icon
+     */
+    this.isRefreshing = true;
+
+    /**
+     * reset evnets
+     */
+    this.events = [];
+
+    this.roomFilterComp.doLoading(true);
+
+    this.eventService.getEvent(roomIds).subscribe(events => {
+
+      events.map(event => {
+        this.events.push(new Event(event));
+        this.isRefreshing = false;
+      });
+
+      this.roomFilterComp.doLoading(false);
+    });
   }
 }

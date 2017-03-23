@@ -1,9 +1,9 @@
-import { Component, AfterViewInit, OnInit } from '@angular/core';
-import { ModalComponent, DialogRef, CloseGuard } from "angular2-modal";
-import { AddEventModalContext } from "./add-event-modal-context";
-import { FormGroup, FormBuilder } from "@angular/forms";
-import { EventService } from "../shared/event.service";
-declare var $:any;
+import {Component, AfterViewInit, OnInit} from '@angular/core';
+import {ModalComponent, DialogRef, CloseGuard} from "angular2-modal";
+import {AddEventModalContext} from "./add-event-modal-context";
+import {FormGroup, FormBuilder} from "@angular/forms";
+import {EventService} from "../shared/event.service";
+declare var $: any;
 
 @Component({
   selector: 'app-add-event-model',
@@ -15,13 +15,12 @@ export class AddEventModalComponent implements OnInit, AfterViewInit, CloseGuard
 
   openDialog: boolean;
   form: FormGroup;
-  addEvent: Event;
+  events: Event;
 
-  constructor(
-    public dialog: DialogRef<AddEventModalContext>,
-    private fb: FormBuilder,
-    private eventService: EventService
-  ) { }
+  constructor(public dialog: DialogRef<AddEventModalContext>,
+              private fb: FormBuilder,
+              private eventService: EventService) {
+  }
 
   ngOnInit() {
     this.openDialog = true;
@@ -55,7 +54,7 @@ export class AddEventModalComponent implements OnInit, AfterViewInit, CloseGuard
   }
 
   ngAfterViewInit() {
-    $(function() {
+    $(function () {
       $('.datetimepicker').datetimepicker({
         format: 'DD/MM/YYYY HH:mm',
         stepping: 30
@@ -68,9 +67,9 @@ export class AddEventModalComponent implements OnInit, AfterViewInit, CloseGuard
   }
 
   // TODO: close modal when press ESC
-  // @HostListener('window:keydown', ['$addEvent'])
-  // handleKeyboardEvent(addEvent: KeyboardEvent) {
-  //   addEvent.keyCode == 27 && this.closeDialog();
+  // @HostListener('window:keydown', ['$events'])
+  // handleKeyboardEvent(events: KeyboardEvent) {
+  //   events.keyCode == 27 && this.closeDialog();
   // }
 
   beforeDismiss(): boolean {
@@ -85,7 +84,8 @@ export class AddEventModalComponent implements OnInit, AfterViewInit, CloseGuard
   onSubmit() {
     this.eventService.addEvent().subscribe(
       res => {
-        this.addEvent = res;
+        this.events = res;
+        console.log(this.events);
       }
     );
 

@@ -1,5 +1,10 @@
 export class Event {
 
+  // TODO: change constructor
+  constructor (event: Object = {}) {
+    Object.assign(this, event);
+  }
+
   // Event Detail
   eventId: number;
   title: string;

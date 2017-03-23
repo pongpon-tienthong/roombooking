@@ -20,6 +20,7 @@ export class RoomFilterComponent implements OnInit {
   rooms: Room[] = [];
   allRoom: Room = new Room(0, 'All Rooms', 'bg-red', false);
   isLoading: boolean = true;
+  isInitRoomFilter: boolean = true;
   selectedRooms: number[];
 
   @Output() onEmitRooms = new EventEmitter<number[]>();
@@ -32,6 +33,7 @@ export class RoomFilterComponent implements OnInit {
         this.rooms.push(this.allRoom);
         this.rooms = this.rooms.concat(res);
         this.isLoading = false;
+        this.isInitRoomFilter = false;
       }
     );
   }
@@ -81,5 +83,11 @@ export class RoomFilterComponent implements OnInit {
     });
 
     this.onEmitRooms.emit(this.selectedRooms);
+  }
+
+  doLoading(loading: boolean) {
+    this.isLoading = loading;
+
+    console.log('loading', this.isLoading);
   }
 }

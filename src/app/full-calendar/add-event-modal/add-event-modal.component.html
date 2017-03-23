@@ -90,7 +90,7 @@
               <div class="checkbox">
                 <label for="event-all-day">
                   <input id="event-all-day" formControlName="eventAllDay" type="checkbox" value="1">
-                  <!--<input id="addEvent-allday-checkbox" formControlName="addEvent[allday]($checkbox)" type="hidden" value="0">-->
+                  <!--<input id="events-allday-checkbox" formControlName="events[allday]($checkbox)" type="hidden" value="0">-->
                   This is an all day event
                 </label>
               </div>
@@ -120,7 +120,7 @@
                 <input class="form-control" id="contact-name" maxlength="255" formControlName="contactName"
                        placeholder="e.g Joe Bloggs" type="text" value="">
                 <!--<i class="form-control-feedback" style="display: none;"></i>-->
-                <!--<small class="help-block" data-bv-validator="stringLength" data-bv-for="addEvent[contactname]"-->
+                <!--<small class="help-block" data-bv-validator="stringLength" data-bv-for="events[contactname]"-->
                 <!--data-bv-result="NOT_VALIDATED" style="display: none;">Please enter a value with valid length-->
                 <!--</small>-->
               </div>
@@ -133,7 +133,7 @@
                 <input class="form-control" id="contact-no" maxlength="255" formControlName="contactNo"
                        placeholder="e.g 123123123" type="text" value="">
                 <!--<i class="form-control-feedback" style="display: none;"></i>-->
-                <!--<small class="help-block" data-bv-validator="stringLength" data-bv-for="addEvent[contactno]"-->
+                <!--<small class="help-block" data-bv-validator="stringLength" data-bv-for="events[contactno]"-->
                 <!--data-bv-result="NOT_VALIDATED" style="display: none;">Please enter a value with valid length-->
                 <!--</small>-->
               </div>
@@ -147,7 +147,7 @@
                   class="form-control" id="contact-email" maxlength="255" formControlName="contactEmail"
                   placeholder="e.g Joe@blogs.com" type="text" value="">
                 <!--<i class="form-control-feedback" style="display: none;"></i>-->
-                <!--<small class="help-block" data-bv-validator="stringLength" data-bv-for="addEvent[contactemail]"-->
+                <!--<small class="help-block" data-bv-validator="stringLength" data-bv-for="events[contactemail]"-->
                 <!--data-bv-result="NOT_VALIDATED" style="display: none;">Please enter a value with valid length-->
                 <!--</small>-->
               </div>
@@ -163,7 +163,7 @@
                   <input id="send-email"
                          formControlName="sendEmail" type="checkbox"
                          value="1">
-                  <!--<input id="addEvent-emailcontact-checkbox" formControlName="addEvent[emailcontact]($checkbox)" type="hidden" value="0">-->
+                  <!--<input id="events-emailcontact-checkbox" formControlName="events[emailcontact]($checkbox)" type="hidden" value="0">-->
                   Send Confirmation Email to Contact</label>
               </div>
             </div>
@@ -178,10 +178,10 @@
       <!--<tr>-->
       <!--<th>Audio Visual</th>-->
       <!--<td data-restrict="0,43" data-unique="11">-->
-      <!--<div class="checkbox"><label for="addEvent-eventresources&#45;&#45;11-_delete"><input-->
-      <!--id="addEvent-eventresources&#45;&#45;11-_delete" formControlName="addEvent[eventresources][,11][_delete]" type="checkbox"-->
-      <!--value="0" disabled="disabled"><input id="addEvent-eventresources&#45;&#45;11-_delete-checkbox"-->
-      <!--formControlName="addEvent[eventresources][,11][_delete]($checkbox)" type="hidden"-->
+      <!--<div class="checkbox"><label for="events-eventresources&#45;&#45;11-_delete"><input-->
+      <!--id="events-eventresources&#45;&#45;11-_delete" formControlName="events[eventresources][,11][_delete]" type="checkbox"-->
+      <!--value="0" disabled="disabled"><input id="events-eventresources&#45;&#45;11-_delete-checkbox"-->
+      <!--formControlName="events[eventresources][,11][_delete]($checkbox)" type="hidden"-->
       <!--value="1" disabled="disabled">Projector</label></div>-->
       <!--</td>-->
       <!--<td>-->
@@ -197,10 +197,10 @@
       <!--<tr>-->
       <!--<th>Computers</th>-->
       <!--<td data-restrict="0,46" data-unique="13">-->
-      <!--<div class="checkbox"><label for="addEvent-eventresources&#45;&#45;13-_delete"><input-->
-      <!--id="addEvent-eventresources&#45;&#45;13-_delete" formControlName="addEvent[eventresources][,13][_delete]" type="checkbox"-->
-      <!--value="0"><input id="addEvent-eventresources&#45;&#45;13-_delete-checkbox"-->
-      <!--formControlName="addEvent[eventresources][,13][_delete]($checkbox)" type="hidden" value="1">3d-->
+      <!--<div class="checkbox"><label for="events-eventresources&#45;&#45;13-_delete"><input-->
+      <!--id="events-eventresources&#45;&#45;13-_delete" formControlName="events[eventresources][,13][_delete]" type="checkbox"-->
+      <!--value="0"><input id="events-eventresources&#45;&#45;13-_delete-checkbox"-->
+      <!--formControlName="events[eventresources][,13][_delete]($checkbox)" type="hidden" value="1">3d-->
       <!--printer</label></div>-->
       <!--</td>-->
       <!--<td>-->
@@ -216,10 +216,10 @@
       <!--<tr>-->
       <!--<th>Furniture</th>-->
       <!--<td>-->
-      <!--<div class="checkbox"><label for="addEvent-eventresources&#45;&#45;12-_delete"><input-->
-      <!--id="addEvent-eventresources&#45;&#45;12-_delete" formControlName="addEvent[eventresources][,12][_delete]" type="checkbox"-->
-      <!--value="0"><input id="addEvent-eventresources&#45;&#45;12-_delete-checkbox"-->
-      <!--formControlName="addEvent[eventresources][,12][_delete]($checkbox)" type="hidden"-->
+      <!--<div class="checkbox"><label for="events-eventresources&#45;&#45;12-_delete"><input-->
+      <!--id="events-eventresources&#45;&#45;12-_delete" formControlName="events[eventresources][,12][_delete]" type="checkbox"-->
+      <!--value="0"><input id="events-eventresources&#45;&#45;12-_delete-checkbox"-->
+      <!--formControlName="events[eventresources][,12][_delete]($checkbox)" type="hidden"-->
       <!--value="1">Chairs</label></div>-->
       <!--</td>-->
       <!--<td>-->
