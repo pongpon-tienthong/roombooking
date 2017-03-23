@@ -87,7 +87,5 @@ export class RoomFilterComponent implements OnInit {
 
   doLoading(loading: boolean) {
     this.isLoading = loading;
-
-    console.log('loading', this.isLoading);
   }
 }

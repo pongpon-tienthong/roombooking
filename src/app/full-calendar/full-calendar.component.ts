@@ -142,6 +142,9 @@ export class FullCalendarComponent implements OnInit, OnDestroy {
      */
     this.events = [];
 
+    /**
+     * disable room filtering buttons
+     */
     this.roomFilterComp.doLoading(true);
 
     this.eventService.getEvent(roomIds).subscribe(events => {
@@ -151,6 +154,9 @@ export class FullCalendarComponent implements OnInit, OnDestroy {
         this.isRefreshing = false;
       });
 
+      /**
+       * enable room filtering buttons
+       */
       this.roomFilterComp.doLoading(false);
     });
   }

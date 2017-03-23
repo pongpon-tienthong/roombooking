@@ -35,9 +35,6 @@ export class EventService {
   }
 
   getEvent(roomIds: number []): Observable<any> {
-
-    console.log('call getEvent');
-
     return this.http.get(this.url, {}).map((res: Response) => res.json());
   }
 }
