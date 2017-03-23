@@ -58,7 +58,7 @@ export class AddEventModalComponent implements OnInit, AfterViewInit, CloseGuard
     $(function() {
       $('.datetimepicker').datetimepicker({
         format: 'DD/MM/YYYY HH:mm',
-        stepping: 15
+        stepping: 30
       });
     });
   }
