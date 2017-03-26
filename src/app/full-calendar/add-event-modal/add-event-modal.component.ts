@@ -85,6 +85,8 @@ export class AddEventModalComponent implements OnInit, AfterViewInit, CloseGuard
     this.eventService.addEvent().subscribe(
       res => {
         this.events = res;
+
+        // TODO: remove dubug log
         console.log(this.events);
       }
     );

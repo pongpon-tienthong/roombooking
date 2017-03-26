@@ -34,7 +34,7 @@ export class EventService {
     return this.http.post(this.url, {}).map((res: Response) => res.json());
   }
 
-  getEvent(roomIds: number []): Observable<any> {
+  getEvent(roomIds: number [] = []): Observable<any> {
     return this.http.get(this.url, {}).map((res: Response) => res.json());
   }
 }
