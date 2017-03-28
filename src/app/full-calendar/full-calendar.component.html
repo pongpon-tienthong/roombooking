@@ -21,12 +21,12 @@
           <!-- THE CALENDAR -->
           <div>
             <span defaultOverlayTarget></span>
-            <angular2-fullcalendar id="event-calendar" [options]="calendarOptions"></angular2-fullcalendar>
+            <angular2-fullcalendar [options]="calendarOptions"></angular2-fullcalendar>
           </div>
         </div>
 
         <!-- Loading (remove the following to stop the loading)-->
-        <div class="overlay" *ngIf="isRefreshing">
+        <div class="overlay" *ngIf="isFullCalendarLoading">
           <i class="fa fa-refresh fa-spin"></i>
         </div>
         <!-- end loading -->
