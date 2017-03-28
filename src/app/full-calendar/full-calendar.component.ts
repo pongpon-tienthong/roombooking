@@ -51,14 +51,14 @@ export class FullCalendarComponent implements OnInit, OnDestroy {
       });
 
       /**
-       * stop loading
-       */
-      this.isFullCalendarLoading = false;
-
-      /**
        * update calendar
        */
       this.fullCalendar.fullCalendar('renderEvents', this.events, true);
+
+      /**
+       * stop loading
+       */
+      this.isFullCalendarLoading = false;
     });
   }
 
@@ -126,13 +126,25 @@ export class FullCalendarComponent implements OnInit, OnDestroy {
 
     this.eventService.getEvent(roomIds).subscribe(events => {
 
-      // TODO: remove dubug
-      console.log(roomIds);
+      this.events = [];
+
+      console.log('evnet', this.events);
 
       events.map(event => {
         this.events.push(new Event(event));
-        this.isFullCalendarLoading = false;
       });
+
+      console.log('evnet', this.events);
+
+      /**
+       * update calendar
+       */
+      this.fullCalendar.fullCalendar('renderEvents', this.events, true);
+
+      /**
+       * stop loading
+       */
+      this.isFullCalendarLoading = false;
 
       /**
        * enable room filtering buttons
