@@ -128,13 +128,14 @@ export class FullCalendarComponent implements OnInit, OnDestroy {
 
       this.events = [];
 
-      console.log('evnet', this.events);
-
       events.map(event => {
         this.events.push(new Event(event));
       });
 
-      console.log('evnet', this.events);
+      /**
+       * clear old events
+       */
+      this.fullCalendar.fullCalendar( 'removeEventSources');
 
       /**
        * update calendar
