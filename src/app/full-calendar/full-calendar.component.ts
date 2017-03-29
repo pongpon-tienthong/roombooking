@@ -88,8 +88,8 @@ export class FullCalendarComponent implements OnInit, OnDestroy {
       select: (start, end) => {
         this.addEvent();
       },
-      eventClick: (calEvent, jsEvent, view) => {
-        console.log("Click Event!!!");
+      eventClick: (event) => {
+        console.log('click event', event);
       },
       selectConstraint: {
         start: moment().format('YYYY-MM-DD'),
