@@ -18,8 +18,8 @@ export class AddEventModalComponent implements OnInit, AfterViewInit, CloseGuard
   events: Event;
 
   constructor(public dialog: DialogRef<AddEventModalContext>,
-              private fb: FormBuilder,
-              private eventService: EventService) {
+              protected fb: FormBuilder,
+              protected eventService: EventService) {
   }
 
   ngOnInit() {

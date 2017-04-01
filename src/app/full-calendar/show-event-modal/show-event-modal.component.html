@@ -1,8 +1,10 @@
 <div class="box box-primary">
   <div class="box-header with-border">
-    <h3 class="box-title">Create New Event</h3>
+    <h3 class="box-title">Event: {{ event.title }}</h3>
 
     <div class="box-tools pull-right">
+      <button type="button" class="btn btn-box-tool" (click)="toggleDisabled()"><i class="fa fa-pencil"></i></button>
+      <button type="button" class="btn btn-box-tool" (click)="deleteEvent()"><i class="fa fa-trash"></i></button>
       <button type="button" class="btn btn-box-tool" (click)="closeDialog()"><i class="fa fa-times"></i></button>
     </div>
   </div>
@@ -10,7 +12,7 @@
     <form id="bookingform" class="bv-form" novalidate [formGroup]="form">
       <div id="concurrencyCheckResult"></div>
 
-      <fieldset formGroupName="event">
+      <fieldset formGroupName="event" [disabled]="isDisabled">
         <legend><h4>Event Details</h4></legend>
         <div class="row">
           <div class="col-md-4">
@@ -32,12 +34,11 @@
                 <label class="control-label" for="event-location-id">Location *</label>
                 <select
                   class="form-control" id="event-location-id" formControlName="eventLocationId">
-                  <option value="46">EPFL RACK</option>
-                  <option value="39">Berlin</option>
-                  <option value="44">High Valley</option>
-                  <option value="43">Little Valley</option>
-                  <option value="47">slot1</option>
-                  <option value="45">E0604</option>
+                  <option value="1">TEST ROOM 1</option>
+                  <option value="2">TEST ROOM 2</option>
+                  <option value="3">TEST ROOM 3</option>
+                  <option value="4">TEST ROOM 4</option>
+                  <option value="5">TEST ROOM 5</option>
                 </select>
               </div>
             </div>
@@ -113,7 +114,7 @@
           </div>
         </div>
       </fieldset>
-      <fieldset formGroupName="contact">
+      <fieldset formGroupName="contact" [disabled]="isDisabled">
         <legend><h4>Contact Details</h4></legend>
         <div class="row">
           <div class="col-sm-4">
@@ -232,7 +233,7 @@
       <!--</tbody>-->
       <!--</table>-->
       <!--</fieldset>-->
-      <fieldset formGroupName="repeat">
+      <fieldset formGroupName="repeat" [disabled]="isDisabled">
         <legend>Bulk Create Events</legend>
         <div class="row">
           <div class="col-md-2">
@@ -286,8 +287,8 @@
       </fieldset>
     </form>
     <div class="modal-footer">
-      <input class="btn btn-block btn-primary btn-lg" type="submit" (click)="onSubmit()"
-             value="Create Booking">
+      <input class="btn btn-block btn-primary btn-lg" type="submit" (click)="onSubmit()" [disabled]="isDisabled"
+             value="Update Booking">
     </div>
   </div>
 </div>

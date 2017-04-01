@@ -8,6 +8,8 @@ import {EventService} from "./shared/event.service";
 import {Event} from "./shared/event";
 import {RoomFilterComponent} from "./room-filter/room-filter.component";
 import {CalendarComponent} from "angular2-fullcalendar/src/calendar/calendar";
+import {ShowEventModalContext} from "./show-event-modal/show-event-modal-context";
+import {ShowEventModalComponent} from "./show-event-modal/show-event-modal.component";
 
 
 @Component({
@@ -89,7 +91,7 @@ export class FullCalendarComponent implements OnInit, OnDestroy {
         this.addEvent();
       },
       eventClick: (event) => {
-        console.log('click event', event);
+        this.showEvent(event);
       },
       selectConstraint: {
         start: moment().format('YYYY-MM-DD'),
@@ -105,6 +107,13 @@ export class FullCalendarComponent implements OnInit, OnDestroy {
 
   addEvent() {
     this.modal.open(AddEventModalComponent, overlayConfigFactory({}, AddEventModalContext));
+  }
+
+  showEvent(event: Event) {
+
+    console.log('event on fullcalendar', event);
+
+    this.modal.open(ShowEventModalComponent, overlayConfigFactory({event}, ShowEventModalContext));
   }
 
   onEmitRooms(roomIds: number[]) {

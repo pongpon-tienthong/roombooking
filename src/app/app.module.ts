@@ -12,6 +12,7 @@ import { CalendarComponent } from "angular2-fullcalendar/src/calendar/calendar";
 import { FullCalendarComponent } from './full-calendar/full-calendar.component';
 import { AddEventModalComponent } from './full-calendar/add-event-modal/add-event-modal.component';
 import { RoomFilterComponent } from './full-calendar/room-filter/room-filter.component';
+import { ShowEventModalComponent } from './full-calendar/show-event-modal/show-event-modal.component';
 
 @NgModule({
   declarations: [
@@ -19,9 +20,11 @@ import { RoomFilterComponent } from './full-calendar/room-filter/room-filter.com
     CalendarComponent,
     FullCalendarComponent,
     AddEventModalComponent,
-    RoomFilterComponent
+    RoomFilterComponent,
+    ShowEventModalComponent
   ],
   entryComponents: [
+    ShowEventModalComponent,
     AddEventModalComponent
   ],
   imports: [
