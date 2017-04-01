@@ -8,7 +8,7 @@
   </div>
 </div>
 <div class="box-body">
-  <form id="bookingform" class="bv-form" novalidate [formGroup]="form" (ngSubmit)="onUpdateEvent()">
+  <form id="bookingform" class="bv-form" novalidate [formGroup]="form">
     <div id="concurrencyCheckResult"></div>
 
     <fieldset formGroupName="event" [disabled]="isDisabled">
@@ -286,6 +286,6 @@
     </fieldset>
   </form>
   <div class="box-footer">
-    <button class="btn btn-block btn-primary btn-lg" type="submit" [disabled]="isDisabled">Update Booking</button>
+    <button class="btn btn-block btn-primary btn-lg" type="submit" [disabled]="isDisabled" (click)="onUpdateEvent(event.id)">Update Booking</button>
   </div>
 </div>

@@ -3,6 +3,7 @@ import {ModalComponent, CloseGuard, DialogRef} from "angular2-modal";
 import {ConfirmCancelModalContext} from "./confirm-cancel-modal-context";
 import {EventService} from "../shared/event.service";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {Event} from "../shared/event";
 
 @Component({
   selector: 'app-confirm-cancel-modal',
@@ -14,12 +15,16 @@ export class ConfirmCancelModalComponent implements OnInit, CloseGuard, ModalCom
   openDialog: boolean;
   form: FormGroup;
   isConfirmEnable: boolean;
+  event: Event;
 
   constructor(public dialog: DialogRef<ConfirmCancelModalContext>,
-              protected fb: FormBuilder) {
+              protected fb: FormBuilder,
+              protected eventService: EventService,
+  ) {
   }
 
   ngOnInit() {
+    this.event = this.dialog.context.event;
     this.isConfirmEnable = false;
     this.openDialog = true;
     this.buildForm();
@@ -32,6 +37,11 @@ export class ConfirmCancelModalComponent implements OnInit, CloseGuard, ModalCom
   }
 
   onConfirmCancel() {
+    this.eventService.deleteEvent(this.event.id).subscribe(res => {
+
+      // TODO: return the result here when API is ready
+      this.closeDialog();
+    });
   }
 
   closeDialog() {
@@ -46,4 +56,5 @@ export class ConfirmCancelModalComponent implements OnInit, CloseGuard, ModalCom
   beforeClose(): boolean {
     return this.openDialog;
   }
+
 }

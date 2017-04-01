@@ -17,7 +17,6 @@ import {ConfirmCancelModalContext} from "./confirm-cancel-modal-context";
 export class ShowEventModalComponent extends AddEventModalComponent {
 
   openDialog: boolean;
-  context: ShowEventModalContext;
   form: FormGroup;
   event: Event;
   isDisabled: boolean = true;
@@ -30,8 +29,7 @@ export class ShowEventModalComponent extends AddEventModalComponent {
   }
 
   ngOnInit() {
-    this.context = this.dialog.context;
-    this.event = this.context.event;
+    this.event = this.dialog.context.event;
     this.openDialog = true;
 
     this.dialog.setCloseGuard(this);
@@ -67,24 +65,21 @@ export class ShowEventModalComponent extends AddEventModalComponent {
   }
 
   deleteEvent(): void {
-    // this.modal.prompt()
-    //   .size('lg')
-    //   .isBlocking(true)
-    //   .showClose(true)
-    //   .keyboard(27)
-    //   .dialogClass('modal-dialog box box-danger')
-    //   .headerClass('box-header with-border')
-    //   .titleHtml('<h3 class="box-title">Please indicate your cancel reason</h3>')
-    //   .bodyClass('box-body')
-    //   .okBtn('Confirm')
-    //   .okBtnClass('btn btn-danger')
-    //   .open();
+    this.modal
+      .open(ConfirmCancelModalComponent, overlayConfigFactory({event: this.event}, ConfirmCancelModalContext))
+      .then((d) => d.result)
+      .then((res) => {
 
-    this.modal.open(ConfirmCancelModalComponent, overlayConfigFactory({}, ConfirmCancelModalContext));
-
-    // this.closeDialog();
+        // TODO: return the result here when API is ready
+        this.closeDialog()
+      });
   }
 
   onUpdateEvent() {
+    this.eventService.updateEvent(this.event.id).subscribe((res) => {
+
+      // TODO: return the result here when API is ready
+      this.closeDialog()
+    });
   }
 }
