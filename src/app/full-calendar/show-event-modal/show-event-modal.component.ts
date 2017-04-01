@@ -5,6 +5,7 @@ import {FormBuilder, FormGroup} from "@angular/forms";
 import {EventService} from "../shared/event.service";
 import {AddEventModalComponent} from "../add-event-modal/add-event-modal.component";
 import {Event} from "../shared/event";
+import {Modal} from 'angular2-modal/plugins/bootstrap';
 
 @Component({
   selector: 'app-show-event-modal',
@@ -21,7 +22,8 @@ export class ShowEventModalComponent extends AddEventModalComponent {
 
   constructor(public dialog: DialogRef<ShowEventModalContext>,
               protected fb: FormBuilder,
-              protected eventService: EventService) {
+              protected eventService: EventService,
+              public modal: Modal) {
     super(dialog, fb, eventService);
   }
 
@@ -64,6 +66,20 @@ export class ShowEventModalComponent extends AddEventModalComponent {
 
   deleteEvent(): void {
     console.log('delete!');
-    this.closeDialog();
+
+    this.modal.prompt()
+      .size('lg')
+      .isBlocking(true)
+      .showClose(true)
+      .keyboard(27)
+      .dialogClass('modal-dialog box box-danger')
+      .headerClass('box-header with-border')
+      .titleHtml('<h3 class="box-title">Please indicate your cancel reason</h3>')
+      .bodyClass('box-body')
+      .okBtn('Confirm')
+      .okBtnClass('btn btn-danger')
+      .open();
+
+    // this.closeDialog();
   }
 }

@@ -1,6 +1,6 @@
 import {Component, AfterViewInit, OnInit} from '@angular/core';
 import {ModalComponent, DialogRef, CloseGuard} from "angular2-modal";
-import {AddEventModalContext} from "./add-event-modal-context";
+import {EventModalContext} from "../shared/event-modal-context";
 import {FormGroup, FormBuilder} from "@angular/forms";
 import {EventService} from "../shared/event.service";
 declare var $: any;
@@ -11,13 +11,13 @@ declare var $: any;
   styleUrls: ['add-event-modal.component.css'],
   providers: [EventService]
 })
-export class AddEventModalComponent implements OnInit, AfterViewInit, CloseGuard, ModalComponent<AddEventModalContext> {
+export class AddEventModalComponent implements OnInit, AfterViewInit, CloseGuard, ModalComponent<EventModalContext> {
 
   openDialog: boolean;
   form: FormGroup;
   events: Event;
 
-  constructor(public dialog: DialogRef<AddEventModalContext>,
+  constructor(public dialog: DialogRef<EventModalContext>,
               protected fb: FormBuilder,
               protected eventService: EventService) {
   }

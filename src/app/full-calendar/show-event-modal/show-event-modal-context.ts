@@ -1,13 +1,11 @@
-import {BSModalContext} from 'angular2-modal/plugins/bootstrap';
 import {Event} from "../shared/event";
+import {EventModalContext} from "../shared/event-modal-context";
 
-export class ShowEventModalContext extends BSModalContext {
+export class ShowEventModalContext extends EventModalContext {
 
   public event: Event;
 
   constructor() {
     super();
-    this.size = 'lg';
-    this.showClose = true;
   }
 }

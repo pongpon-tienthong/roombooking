@@ -1,294 +1,292 @@
-<div class="box box-primary">
-  <div class="box-header with-border">
-    <h3 class="box-title">Create New Event</h3>
+<div class="box-header with-border">
+  <h3 class="box-title">Create New Event</h3>
 
-    <div class="box-tools pull-right">
-      <button type="button" class="btn btn-box-tool" (click)="closeDialog()"><i class="fa fa-times"></i></button>
-    </div>
+  <div class="box-tools pull-right">
+    <button type="button" class="btn btn-box-tool" (click)="closeDialog()"><i class="fa fa-times"></i></button>
   </div>
-  <div class="box-body">
-    <form id="bookingform" class="bv-form" novalidate [formGroup]="form">
-      <div id="concurrencyCheckResult"></div>
+</div>
+<div class="box-body">
+  <form id="bookingform" class="bv-form" novalidate [formGroup]="form">
+    <div id="concurrencyCheckResult"></div>
 
-      <fieldset formGroupName="event">
-        <legend><h4>Event Details</h4></legend>
-        <div class="row">
-          <div class="col-md-4">
-            <div class=" append">
-              <div class="form-group has-feedback">
-                <label class="control-label" for="event-title">Event Title *</label>
-                <input class="form-control" id="event-title" maxlength="500" formControlName="eventTitle"
-                       placeholder="e.g My Meeting" required="" type="text" value="">
-                <!--TODO: Add validation effect-->
-                <!--<i class="glyphicon glyphicon-ok" style="display: none;"></i>-->
-                <!--<small class="help-block" style="display: none;">Please enter a value</small>-->
-                <!--<small class="help-block" style="display: none;">Please enter a value with valid length</small>-->
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class=" append">
-              <div class="form-group">
-                <label class="control-label" for="event-location-id">Location *</label>
-                <select
-                  class="form-control" id="event-location-id" formControlName="eventLocationId">
-                  <option value="46">EPFL RACK</option>
-                  <option value="39">Berlin</option>
-                  <option value="44">High Valley</option>
-                  <option value="43">Little Valley</option>
-                  <option value="47">slot1</option>
-                  <option value="45">E0604</option>
-                </select>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class=" append">
-              <div class="form-group">
-                <label class="control-label" for="event-layout-style">Layout</label>
-                <select
-                  class="form-control" id="event-layout-style" formControlName="eventLayoutStyle">
-                  <option value="standard">Standard</option>
-                  <option value="boardroom">Boardroom</option>
-                  <option value="lecture">Lecture</option>
-                </select>
-              </div>
+    <fieldset formGroupName="event">
+      <legend><h4>Event Details</h4></legend>
+      <div class="row">
+        <div class="col-md-4">
+          <div class=" append">
+            <div class="form-group has-feedback">
+              <label class="control-label" for="event-title">Event Title *</label>
+              <input class="form-control" id="event-title" maxlength="500" formControlName="eventTitle"
+                     placeholder="e.g My Meeting" required="" type="text" value="">
+              <!--TODO: Add validation effect-->
+              <!--<i class="glyphicon glyphicon-ok" style="display: none;"></i>-->
+              <!--<small class="help-block" style="display: none;">Please enter a value</small>-->
+              <!--<small class="help-block" style="display: none;">Please enter a value with valid length</small>-->
             </div>
           </div>
         </div>
-        <div class="row">
-          <div class="col-md-4">
-            <div class=" append">
-              <div class="form-group has-feedback">
-                <label class="control-label" for="event-start">Start *</label>
-                <div class='input-group date datetimepicker'>
-                  <input class="form-control" id="event-start" formControlName="eventStart"
-                         placeholder="" required="" type="text" (blur)="setDateValue('eventStart', eventStart.value)"
-                         #eventStart>
-                  <span class="input-group-addon">
-                  <span class="glyphicon glyphicon-calendar"></span>
-                </span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class=" append">
-              <div class="form-group has-feedback">
-                <label class="control-label" for="event-end">End *</label>
-                <div class='input-group date datetimepicker'>
-                  <input class="form-control" id="event-end" formControlName="eventEnd"
-                         placeholder="" required="" type="text" (blur)="setDateValue('eventEnd', eventEnd.value)"
-                         #eventEnd>
-                  <span class="input-group-addon">
-                  <span class="glyphicon glyphicon-calendar"></span>
-                </span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class=" append">
-              <label></label>
-              <div class="checkbox">
-                <label for="event-all-day">
-                  <input id="event-all-day" formControlName="eventAllDay" type="checkbox" value="1">
-                  <!--<input id="events-allday-checkbox" formControlName="events[allday]($checkbox)" type="hidden" value="0">-->
-                  This is an all day event
-                </label>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-12">
-            <div class=" append">
-              <div class="form-group">
-                <label class="control-label" for="event-description">Description</label>
-                <textarea
-                  class="form-control" id="event-description" formControlName="eventDescription"
-                  placeholder="Optional Notes about this event"></textarea>
-              </div>
-            </div>
-          </div>
-        </div>
-      </fieldset>
-      <fieldset formGroupName="contact">
-        <legend><h4>Contact Details</h4></legend>
-        <div class="row">
-          <div class="col-sm-4">
-            <div class=" append">
-              <div class="form-group has-feedback">
-                <label class="control-label" for="contact-name">Contact Name</label>
-                <input class="form-control" id="contact-name" maxlength="255" formControlName="contactName"
-                       placeholder="e.g Joe Bloggs" type="text" value="">
-                <!--<i class="form-control-feedback" style="display: none;"></i>-->
-                <!--<small class="help-block" data-bv-validator="stringLength" data-bv-for="events[contactname]"-->
-                <!--data-bv-result="NOT_VALIDATED" style="display: none;">Please enter a value with valid length-->
-                <!--</small>-->
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-4">
-            <div class=" append">
-              <div class="form-group has-feedback">
-                <label class="control-label" for="contact-no">Tel No.</label>
-                <input class="form-control" id="contact-no" maxlength="255" formControlName="contactNo"
-                       placeholder="e.g 123123123" type="text" value="">
-                <!--<i class="form-control-feedback" style="display: none;"></i>-->
-                <!--<small class="help-block" data-bv-validator="stringLength" data-bv-for="events[contactno]"-->
-                <!--data-bv-result="NOT_VALIDATED" style="display: none;">Please enter a value with valid length-->
-                <!--</small>-->
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-4">
-            <div class=" append">
-              <div class="form-group has-feedback">
-                <label class="control-label" for="contact-email">Email</label>
-                <input
-                  class="form-control" id="contact-email" maxlength="255" formControlName="contactEmail"
-                  placeholder="e.g Joe@blogs.com" type="text" value="">
-                <!--<i class="form-control-feedback" style="display: none;"></i>-->
-                <!--<small class="help-block" data-bv-validator="stringLength" data-bv-for="events[contactemail]"-->
-                <!--data-bv-result="NOT_VALIDATED" style="display: none;">Please enter a value with valid length-->
-                <!--</small>-->
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-sm-6">
-            <div class=" append">
-              <label></label>
-              <div class="checkbox">
-                <label for="send-email">
-                  <input id="send-email"
-                         formControlName="sendEmail" type="checkbox"
-                         value="1">
-                  <!--<input id="events-emailcontact-checkbox" formControlName="events[emailcontact]($checkbox)" type="hidden" value="0">-->
-                  Send Confirmation Email to Contact</label>
-              </div>
-            </div>
-          </div>
-        </div>
-      </fieldset>
-      <!--TODO: Add Bookable Resources-->
-      <!--<fieldset>-->
-      <!--<legend>Bookable Resources</legend>-->
-      <!--<table id="resourceTable" class="table table-condensed table-hover">-->
-      <!--<tbody>-->
-      <!--<tr>-->
-      <!--<th>Audio Visual</th>-->
-      <!--<td data-restrict="0,43" data-unique="11">-->
-      <!--<div class="checkbox"><label for="events-eventresources&#45;&#45;11-_delete"><input-->
-      <!--id="events-eventresources&#45;&#45;11-_delete" formControlName="events[eventresources][,11][_delete]" type="checkbox"-->
-      <!--value="0" disabled="disabled"><input id="events-eventresources&#45;&#45;11-_delete-checkbox"-->
-      <!--formControlName="events[eventresources][,11][_delete]($checkbox)" type="hidden"-->
-      <!--value="1" disabled="disabled">Projector</label></div>-->
-      <!--</td>-->
-      <!--<td>-->
-      <!--<button type="button" class="pop btn btn-xs btn-default" data-toggle="popover" title=""-->
-      <!--data-content="Selection is restricted to certain locations"-->
-      <!--data-original-title="Location Restricted"><i class="glyphicon glyphicon-info-sign"></i></button>-->
-      <!--<button type="button" class="pop btn btn-xs btn-default" data-toggle="popover" title=""-->
-      <!--data-content="Will not allow concurrent booking" data-original-title="Unique Item or Service"><i-->
-      <!--class="glyphicon glyphicon-exclamation-sign"></i></button>-->
-      <!--</td>-->
-      <!--<td></td>-->
-      <!--</tr>-->
-      <!--<tr>-->
-      <!--<th>Computers</th>-->
-      <!--<td data-restrict="0,46" data-unique="13">-->
-      <!--<div class="checkbox"><label for="events-eventresources&#45;&#45;13-_delete"><input-->
-      <!--id="events-eventresources&#45;&#45;13-_delete" formControlName="events[eventresources][,13][_delete]" type="checkbox"-->
-      <!--value="0"><input id="events-eventresources&#45;&#45;13-_delete-checkbox"-->
-      <!--formControlName="events[eventresources][,13][_delete]($checkbox)" type="hidden" value="1">3d-->
-      <!--printer</label></div>-->
-      <!--</td>-->
-      <!--<td>-->
-      <!--<button type="button" class="pop btn btn-xs btn-default" data-toggle="popover" title=""-->
-      <!--data-content="Selection is restricted to certain locations"-->
-      <!--data-original-title="Location Restricted"><i class="glyphicon glyphicon-info-sign"></i></button>-->
-      <!--<button type="button" class="pop btn btn-xs btn-default" data-toggle="popover" title=""-->
-      <!--data-content="Will not allow concurrent booking" data-original-title="Unique Item or Service"><i-->
-      <!--class="glyphicon glyphicon-exclamation-sign"></i></button>-->
-      <!--</td>-->
-      <!--<td></td>-->
-      <!--</tr>-->
-      <!--<tr>-->
-      <!--<th>Furniture</th>-->
-      <!--<td>-->
-      <!--<div class="checkbox"><label for="events-eventresources&#45;&#45;12-_delete"><input-->
-      <!--id="events-eventresources&#45;&#45;12-_delete" formControlName="events[eventresources][,12][_delete]" type="checkbox"-->
-      <!--value="0"><input id="events-eventresources&#45;&#45;12-_delete-checkbox"-->
-      <!--formControlName="events[eventresources][,12][_delete]($checkbox)" type="hidden"-->
-      <!--value="1">Chairs</label></div>-->
-      <!--</td>-->
-      <!--<td>-->
-      <!--</td>-->
-      <!--<td></td>-->
-      <!--</tr>-->
-      <!--</tbody>-->
-      <!--</table>-->
-      <!--</fieldset>-->
-      <fieldset formGroupName="repeat">
-        <legend>Bulk Create Events</legend>
-        <div class="row">
-          <div class="col-md-2">
-            <div class="radio">
-              <label for="repeat-none">
-                <input checked="checked" id="repeat-none" formControlName="repeat" type="radio" value="none">
-                Don't Repeat
-              </label>
-            </div>
-          </div>
-          <div class="col-md-2">
-            <div class="radio">
-              <label for="repeat-week">
-                <input id="repeat-week" formControlName="repeat" type="radio" value="weekly">
-                Weekly
-              </label>
-            </div>
-          </div>
-          <div class="col-md-2">
-            <div class="radio">
-              <label for="repeat-month">
-                <input id="repeat-month" formControlName="repeat" type="radio" value="monthly">
-                Monthly
-              </label>
-            </div>
-          </div>
-          <div class="col-md-3">
+        <div class="col-md-4">
+          <div class=" append">
             <div class="form-group">
-              <label class="control-label" for="repeatno">
-                How Many More Times?
-              </label>
+              <label class="control-label" for="event-location-id">Location *</label>
               <select
-                class="form-control" id="repeatno" formControlName="repeatNo">
-                <option value=""></option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-                <option value="6">6</option>
-                <option value="7">7</option>
-                <option value="8">8</option>
-                <option value="9">9</option>
-                <option value="10">10</option>
-                <option value="11">11</option>
-                <option value="12">12</option>
+                class="form-control" id="event-location-id" formControlName="eventLocationId">
+                <option value="46">EPFL RACK</option>
+                <option value="39">Berlin</option>
+                <option value="44">High Valley</option>
+                <option value="43">Little Valley</option>
+                <option value="47">slot1</option>
+                <option value="45">E0604</option>
               </select>
             </div>
           </div>
         </div>
-      </fieldset>
-    </form>
-    <div class="modal-footer">
-      <input class="btn btn-block btn-primary btn-lg" type="submit" (click)="onSubmit()"
-             value="Create Booking">
-    </div>
+        <div class="col-md-4">
+          <div class=" append">
+            <div class="form-group">
+              <label class="control-label" for="event-layout-style">Layout</label>
+              <select
+                class="form-control" id="event-layout-style" formControlName="eventLayoutStyle">
+                <option value="standard">Standard</option>
+                <option value="boardroom">Boardroom</option>
+                <option value="lecture">Lecture</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4">
+          <div class=" append">
+            <div class="form-group has-feedback">
+              <label class="control-label" for="event-start">Start *</label>
+              <div class='input-group date datetimepicker'>
+                <input class="form-control" id="event-start" formControlName="eventStart"
+                       placeholder="" required="" type="text" (blur)="setDateValue('eventStart', eventStart.value)"
+                       #eventStart>
+                <span class="input-group-addon">
+                <span class="glyphicon glyphicon-calendar"></span>
+              </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class=" append">
+            <div class="form-group has-feedback">
+              <label class="control-label" for="event-end">End *</label>
+              <div class='input-group date datetimepicker'>
+                <input class="form-control" id="event-end" formControlName="eventEnd"
+                       placeholder="" required="" type="text" (blur)="setDateValue('eventEnd', eventEnd.value)"
+                       #eventEnd>
+                <span class="input-group-addon">
+                <span class="glyphicon glyphicon-calendar"></span>
+              </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class=" append">
+            <label></label>
+            <div class="checkbox">
+              <label for="event-all-day">
+                <input id="event-all-day" formControlName="eventAllDay" type="checkbox" value="1">
+                <!--<input id="events-allday-checkbox" formControlName="events[allday]($checkbox)" type="hidden" value="0">-->
+                This is an all day event
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class=" append">
+            <div class="form-group">
+              <label class="control-label" for="event-description">Description</label>
+              <textarea
+                class="form-control" id="event-description" formControlName="eventDescription"
+                placeholder="Optional Notes about this event"></textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+    </fieldset>
+    <fieldset formGroupName="contact">
+      <legend><h4>Contact Details</h4></legend>
+      <div class="row">
+        <div class="col-sm-4">
+          <div class=" append">
+            <div class="form-group has-feedback">
+              <label class="control-label" for="contact-name">Contact Name</label>
+              <input class="form-control" id="contact-name" maxlength="255" formControlName="contactName"
+                     placeholder="e.g Joe Bloggs" type="text" value="">
+              <!--<i class="form-control-feedback" style="display: none;"></i>-->
+              <!--<small class="help-block" data-bv-validator="stringLength" data-bv-for="events[contactname]"-->
+              <!--data-bv-result="NOT_VALIDATED" style="display: none;">Please enter a value with valid length-->
+              <!--</small>-->
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class=" append">
+            <div class="form-group has-feedback">
+              <label class="control-label" for="contact-no">Tel No.</label>
+              <input class="form-control" id="contact-no" maxlength="255" formControlName="contactNo"
+                     placeholder="e.g 123123123" type="text" value="">
+              <!--<i class="form-control-feedback" style="display: none;"></i>-->
+              <!--<small class="help-block" data-bv-validator="stringLength" data-bv-for="events[contactno]"-->
+              <!--data-bv-result="NOT_VALIDATED" style="display: none;">Please enter a value with valid length-->
+              <!--</small>-->
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class=" append">
+            <div class="form-group has-feedback">
+              <label class="control-label" for="contact-email">Email</label>
+              <input
+                class="form-control" id="contact-email" maxlength="255" formControlName="contactEmail"
+                placeholder="e.g Joe@blogs.com" type="text" value="">
+              <!--<i class="form-control-feedback" style="display: none;"></i>-->
+              <!--<small class="help-block" data-bv-validator="stringLength" data-bv-for="events[contactemail]"-->
+              <!--data-bv-result="NOT_VALIDATED" style="display: none;">Please enter a value with valid length-->
+              <!--</small>-->
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-6">
+          <div class=" append">
+            <label></label>
+            <div class="checkbox">
+              <label for="send-email">
+                <input id="send-email"
+                       formControlName="sendEmail" type="checkbox"
+                       value="1">
+                <!--<input id="events-emailcontact-checkbox" formControlName="events[emailcontact]($checkbox)" type="hidden" value="0">-->
+                Send Confirmation Email to Contact</label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </fieldset>
+    <!--TODO: Add Bookable Resources-->
+    <!--<fieldset>-->
+    <!--<legend>Bookable Resources</legend>-->
+    <!--<table id="resourceTable" class="table table-condensed table-hover">-->
+    <!--<tbody>-->
+    <!--<tr>-->
+    <!--<th>Audio Visual</th>-->
+    <!--<td data-restrict="0,43" data-unique="11">-->
+    <!--<div class="checkbox"><label for="events-eventresources&#45;&#45;11-_delete"><input-->
+    <!--id="events-eventresources&#45;&#45;11-_delete" formControlName="events[eventresources][,11][_delete]" type="checkbox"-->
+    <!--value="0" disabled="disabled"><input id="events-eventresources&#45;&#45;11-_delete-checkbox"-->
+    <!--formControlName="events[eventresources][,11][_delete]($checkbox)" type="hidden"-->
+    <!--value="1" disabled="disabled">Projector</label></div>-->
+    <!--</td>-->
+    <!--<td>-->
+    <!--<button type="button" class="pop btn btn-xs btn-default" data-toggle="popover" title=""-->
+    <!--data-content="Selection is restricted to certain locations"-->
+    <!--data-original-title="Location Restricted"><i class="glyphicon glyphicon-info-sign"></i></button>-->
+    <!--<button type="button" class="pop btn btn-xs btn-default" data-toggle="popover" title=""-->
+    <!--data-content="Will not allow concurrent booking" data-original-title="Unique Item or Service"><i-->
+    <!--class="glyphicon glyphicon-exclamation-sign"></i></button>-->
+    <!--</td>-->
+    <!--<td></td>-->
+    <!--</tr>-->
+    <!--<tr>-->
+    <!--<th>Computers</th>-->
+    <!--<td data-restrict="0,46" data-unique="13">-->
+    <!--<div class="checkbox"><label for="events-eventresources&#45;&#45;13-_delete"><input-->
+    <!--id="events-eventresources&#45;&#45;13-_delete" formControlName="events[eventresources][,13][_delete]" type="checkbox"-->
+    <!--value="0"><input id="events-eventresources&#45;&#45;13-_delete-checkbox"-->
+    <!--formControlName="events[eventresources][,13][_delete]($checkbox)" type="hidden" value="1">3d-->
+    <!--printer</label></div>-->
+    <!--</td>-->
+    <!--<td>-->
+    <!--<button type="button" class="pop btn btn-xs btn-default" data-toggle="popover" title=""-->
+    <!--data-content="Selection is restricted to certain locations"-->
+    <!--data-original-title="Location Restricted"><i class="glyphicon glyphicon-info-sign"></i></button>-->
+    <!--<button type="button" class="pop btn btn-xs btn-default" data-toggle="popover" title=""-->
+    <!--data-content="Will not allow concurrent booking" data-original-title="Unique Item or Service"><i-->
+    <!--class="glyphicon glyphicon-exclamation-sign"></i></button>-->
+    <!--</td>-->
+    <!--<td></td>-->
+    <!--</tr>-->
+    <!--<tr>-->
+    <!--<th>Furniture</th>-->
+    <!--<td>-->
+    <!--<div class="checkbox"><label for="events-eventresources&#45;&#45;12-_delete"><input-->
+    <!--id="events-eventresources&#45;&#45;12-_delete" formControlName="events[eventresources][,12][_delete]" type="checkbox"-->
+    <!--value="0"><input id="events-eventresources&#45;&#45;12-_delete-checkbox"-->
+    <!--formControlName="events[eventresources][,12][_delete]($checkbox)" type="hidden"-->
+    <!--value="1">Chairs</label></div>-->
+    <!--</td>-->
+    <!--<td>-->
+    <!--</td>-->
+    <!--<td></td>-->
+    <!--</tr>-->
+    <!--</tbody>-->
+    <!--</table>-->
+    <!--</fieldset>-->
+    <fieldset formGroupName="repeat">
+      <legend>Bulk Create Events</legend>
+      <div class="row">
+        <div class="col-md-2">
+          <div class="radio">
+            <label for="repeat-none">
+              <input checked="checked" id="repeat-none" formControlName="repeat" type="radio" value="none">
+              Don't Repeat
+            </label>
+          </div>
+        </div>
+        <div class="col-md-2">
+          <div class="radio">
+            <label for="repeat-week">
+              <input id="repeat-week" formControlName="repeat" type="radio" value="weekly">
+              Weekly
+            </label>
+          </div>
+        </div>
+        <div class="col-md-2">
+          <div class="radio">
+            <label for="repeat-month">
+              <input id="repeat-month" formControlName="repeat" type="radio" value="monthly">
+              Monthly
+            </label>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label class="control-label" for="repeatno">
+              How Many More Times?
+            </label>
+            <select
+              class="form-control" id="repeatno" formControlName="repeatNo">
+              <option value=""></option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+              <option value="9">9</option>
+              <option value="10">10</option>
+              <option value="11">11</option>
+              <option value="12">12</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </fieldset>
+  </form>
+  <div class="modal-footer">
+    <input class="btn btn-block btn-primary btn-lg" type="submit" (click)="onSubmit()"
+           value="Create Booking">
   </div>
 </div>
 
