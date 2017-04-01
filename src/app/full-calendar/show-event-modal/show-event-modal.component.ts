@@ -7,8 +7,7 @@ import {AddEventModalComponent} from "../add-event-modal/add-event-modal.compone
 import {Event} from "../shared/event";
 import {Modal} from 'angular2-modal/plugins/bootstrap';
 import {ConfirmCancelModalComponent} from "./confirm-cancel-modal.component";
-import {EventModalContext} from "../shared/event-modal-context";
-import {ConfirmCancelModalContext} from "./ConfirmCancelModalContext";
+import {ConfirmCancelModalContext} from "./confirm-cancel-modal-context";
 
 @Component({
   selector: 'app-show-event-modal',
@@ -68,8 +67,6 @@ export class ShowEventModalComponent extends AddEventModalComponent {
   }
 
   deleteEvent(): void {
-    console.log('delete!');
-
     // this.modal.prompt()
     //   .size('lg')
     //   .isBlocking(true)
@@ -86,5 +83,8 @@ export class ShowEventModalComponent extends AddEventModalComponent {
     this.modal.open(ConfirmCancelModalComponent, overlayConfigFactory({}, ConfirmCancelModalContext));
 
     // this.closeDialog();
+  }
+
+  onUpdateEvent() {
   }
 }
