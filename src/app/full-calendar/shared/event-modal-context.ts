@@ -4,7 +4,7 @@ export class EventModalContext extends BSModalContext {
 
   constructor() {
     super();
-    this.dialogClass = 'modal-dialog box box-primary';
+    this.dialogClass = 'modal-dialog custom-dialog box box-primary';
     this.size = 'lg';
     this.showClose = true;
   }

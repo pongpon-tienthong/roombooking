@@ -13,6 +13,7 @@ import { FullCalendarComponent } from './full-calendar/full-calendar.component';
 import { AddEventModalComponent } from './full-calendar/add-event-modal/add-event-modal.component';
 import { RoomFilterComponent } from './full-calendar/room-filter/room-filter.component';
 import { ShowEventModalComponent } from './full-calendar/show-event-modal/show-event-modal.component';
+import { ConfirmCancelModalComponent } from './full-calendar/show-event-modal/confirm-cancel-modal.component';
 
 @NgModule({
   declarations: [
@@ -21,11 +22,13 @@ import { ShowEventModalComponent } from './full-calendar/show-event-modal/show-e
     FullCalendarComponent,
     AddEventModalComponent,
     RoomFilterComponent,
-    ShowEventModalComponent
+    ShowEventModalComponent,
+    ConfirmCancelModalComponent
   ],
   entryComponents: [
     ShowEventModalComponent,
-    AddEventModalComponent
+    AddEventModalComponent,
+    ConfirmCancelModalComponent
   ],
   imports: [
     BrowserModule,

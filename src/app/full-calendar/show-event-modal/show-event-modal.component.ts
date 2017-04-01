@@ -1,11 +1,14 @@
 import {Component} from '@angular/core';
-import {DialogRef} from "angular2-modal";
+import {DialogRef, overlayConfigFactory} from "angular2-modal";
 import {ShowEventModalContext} from "./show-event-modal-context";
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {EventService} from "../shared/event.service";
 import {AddEventModalComponent} from "../add-event-modal/add-event-modal.component";
 import {Event} from "../shared/event";
 import {Modal} from 'angular2-modal/plugins/bootstrap';
+import {ConfirmCancelModalComponent} from "./confirm-cancel-modal.component";
+import {EventModalContext} from "../shared/event-modal-context";
+import {ConfirmCancelModalContext} from "./ConfirmCancelModalContext";
 
 @Component({
   selector: 'app-show-event-modal',
@@ -67,18 +70,20 @@ export class ShowEventModalComponent extends AddEventModalComponent {
   deleteEvent(): void {
     console.log('delete!');
 
-    this.modal.prompt()
-      .size('lg')
-      .isBlocking(true)
-      .showClose(true)
-      .keyboard(27)
-      .dialogClass('modal-dialog box box-danger')
-      .headerClass('box-header with-border')
-      .titleHtml('<h3 class="box-title">Please indicate your cancel reason</h3>')
-      .bodyClass('box-body')
-      .okBtn('Confirm')
-      .okBtnClass('btn btn-danger')
-      .open();
+    // this.modal.prompt()
+    //   .size('lg')
+    //   .isBlocking(true)
+    //   .showClose(true)
+    //   .keyboard(27)
+    //   .dialogClass('modal-dialog box box-danger')
+    //   .headerClass('box-header with-border')
+    //   .titleHtml('<h3 class="box-title">Please indicate your cancel reason</h3>')
+    //   .bodyClass('box-body')
+    //   .okBtn('Confirm')
+    //   .okBtnClass('btn btn-danger')
+    //   .open();
+
+    this.modal.open(ConfirmCancelModalComponent, overlayConfigFactory({}, ConfirmCancelModalContext));
 
     // this.closeDialog();
   }
