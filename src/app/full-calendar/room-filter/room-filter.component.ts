@@ -38,6 +38,7 @@ export class RoomFilterComponent implements OnInit {
     );
   }
 
+  // TODO: use debounce instead of loading animation
   selectRoom(room: Room) {
 
     /**

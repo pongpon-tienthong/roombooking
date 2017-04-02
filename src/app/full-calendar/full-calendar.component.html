@@ -19,14 +19,14 @@
         <div class="box-body no-padding">
 
           <!-- THE CALENDAR -->
-          <div id="calendar">
+          <div>
             <span defaultOverlayTarget></span>
             <angular2-fullcalendar [options]="calendarOptions"></angular2-fullcalendar>
           </div>
         </div>
 
         <!-- Loading (remove the following to stop the loading)-->
-        <div class="overlay" *ngIf="isRefreshing">
+        <div class="overlay" *ngIf="isFullCalendarLoading">
           <i class="fa fa-refresh fa-spin"></i>
         </div>
         <!-- end loading -->

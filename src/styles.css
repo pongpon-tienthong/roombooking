@@ -1,8 +1,24 @@
 /* You can add global styles to this file, and also import other style files */
 
 /**
- * Add background-color of past date for full-calendar
+ * add background-color of past date for full-calendar
  */
 td.fc-day.fc-past {
   background-color: #EEEEEE;
+}
+
+/**
+ * custoim dialog style
+ */
+@media (min-width: 768px) {
+  .modal-dialog {
+    width: 600px;
+    margin: 30px auto;
+  }
+}
+
+@media (min-width: 992px) {
+  .modal-dialog {
+    width: 900px;
+  }
 }

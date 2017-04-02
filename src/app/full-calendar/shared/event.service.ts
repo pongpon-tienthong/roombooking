@@ -13,28 +13,22 @@ export class EventService {
 
   // TODO: add err handler
   addEvent(): Observable<any> {
-
-    // return {
-    //   eventId: 1,
-    //   title: 'TITLE',
-    //   locationName: 'UPPER ROOM',
-    //   locationId: 1,
-    //   layout: 'standard',
-    //   start: '29/12/2017 15:30',
-    //   end: '29/12/2017 19:30',
-    //   description: 'TEST',
-    //   allDay: false,
-    //   contactName: 'Pongpon Tienthong',
-    //   contactNumber: '096-141-5653',
-    //   contactEmail: 'pongpon.tienthong@gmail.com',
-    //   sendEmail: true,
-    //   repeat: 'none'
-    // }
-
     return this.http.post(this.url, {}).map((res: Response) => res.json());
   }
 
-  getEvent(roomIds: number []): Observable<any> {
+  getEvent(roomIds: number [] = []): Observable<any> {
+    return this.http.get(this.url, {}).map((res: Response) => res.json());
+  }
+
+  // TODO: implement this delete method
+  deleteEvent(eventId: number): Observable<any> {
+    console.log('perform delete event', eventId);
+    return this.http.get(this.url, {}).map((res: Response) => res.json());
+  }
+
+  // TODO: implement this update method
+  updateEvent(eventId: number): Observable<any> {
+    console.log('perform update event', eventId);
     return this.http.get(this.url, {}).map((res: Response) => res.json());
   }
 }

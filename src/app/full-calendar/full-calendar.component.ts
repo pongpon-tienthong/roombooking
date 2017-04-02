@@ -2,11 +2,14 @@ import {Component, OnInit, OnDestroy, ViewChild} from '@angular/core';
 import {overlayConfigFactory} from 'angular2-modal';
 import {Modal} from 'angular2-modal/plugins/bootstrap';
 import {AddEventModalComponent} from './add-event-modal/add-event-modal.component';
-import {AddEventModalContext} from "./add-event-modal/add-event-modal-context";
+import {EventModalContext} from "./shared/event-modal-context";
 import * as moment from 'moment/moment';
 import {EventService} from "./shared/event.service";
 import {Event} from "./shared/event";
 import {RoomFilterComponent} from "./room-filter/room-filter.component";
+import {CalendarComponent} from "angular2-fullcalendar/src/calendar/calendar";
+import {ShowEventModalComponent} from "./show-event-modal/show-event-modal.component";
+import {ShowEventModalContext} from "./show-event-modal/show-event-modal-context";
 
 
 @Component({
@@ -17,10 +20,12 @@ import {RoomFilterComponent} from "./room-filter/room-filter.component";
 })
 export class FullCalendarComponent implements OnInit, OnDestroy {
 
-  isRefreshing: boolean = true;
+  isFullCalendarLoading: boolean = true;
   events: Event[] = [];
+  calendarOptions: Object;
 
-  @ViewChild(RoomFilterComponent) roomFilterComp: RoomFilterComponent;
+  @ViewChild(RoomFilterComponent) roomFilter: RoomFilterComponent;
+  @ViewChild(CalendarComponent) fullCalendar: CalendarComponent;
 
   constructor(private modal: Modal,
               private eventService: EventService) {
@@ -28,106 +33,84 @@ export class FullCalendarComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
 
-    // TODO: remove this when get events is ready/
-    this.isRefreshing = false;
+    /**
+     * init calendar option
+     */
+    this.setCalendarOption();
+
+    /**
+     * show loading
+     */
+    this.isFullCalendarLoading = true;
+
+    /**
+     * get events from api
+     */
+    this.eventService.getEvent().subscribe(events => {
+
+      events.map(event => {
+        this.events.push(new Event(event));
+      });
+
+      /**
+       * update calendar
+       */
+      this.fullCalendar.fullCalendar('renderEvents', this.events, true);
+
+      /**
+       * stop loading
+       */
+      this.isFullCalendarLoading = false;
+    });
   }
 
   // TODO: unsubscribe if necessary
-  ngOnDestroy(){
+  ngOnDestroy() {
   }
 
-  calendarOptions: Object = {
-    header: {
-      left: 'prev,next today',
-      center: 'title',
-      right: 'month,agendaWeek,listWeek,agendaDay'
-    },
-    buttonText: {
-      today: 'Today',
-      month: 'Month',
-      week: 'Week',
-      listWeek: 'List',
-      day: 'Day'
-    },
-    contentHeight: 530,
-    navLinks: true, // can click day/week names to navigate views
-    editable: true,
-    eventLimit: true, // allow "more" link when too many events
-    selectable: true,
-    select: (start, end) => {
-      this.addEvent();
-    },
-    eventClick: (calEvent, jsEvent, view) => {
-      console.log("Click Event!!!");
-    },
-    selectConstraint: {
-      start: moment().format('YYYY-MM-DD'),
-      end: moment().add(100, 'years').format('YYYY-MM-DD')
-    },
-    eventConstraint: {
-      start: moment().format('YYYY-MM-DD'),
-      end: moment().add(100, 'years').format('YYYY-MM-DD')
-    },
-    events: [
-      {
-        title: 'All Day Event',
-        start: '2017-02-01'
+  setCalendarOption() {
+    this.calendarOptions = {
+      header: {
+        left: 'prev,next today',
+        center: 'title',
+        right: 'month,agendaWeek,listWeek,agendaDay'
       },
-      {
-        title: 'Long Event',
-        start: '2017-02-07',
-        end: '2017-02-10'
+      buttonText: {
+        today: 'Today',
+        month: 'Month',
+        week: 'Week',
+        listWeek: 'List',
+        day: 'Day'
       },
-      {
-        id: 999,
-        title: 'Repeating Event',
-        start: '2017-02-09T16:00:00'
+      contentHeight: 530,
+      navLinks: true,
+      editable: true,
+      eventLimit: true,
+      selectable: true,
+      select: (start, end) => {
+        this.addEvent();
       },
-      {
-        id: 999,
-        title: 'Repeating Event',
-        start: '2017-02-16T16:00:00'
+      eventClick: (event) => {
+        this.showEvent(event);
       },
-      {
-        title: 'Conference',
-        start: '2017-02-11',
-        end: '2017-02-13'
+      selectConstraint: {
+        start: moment().format('YYYY-MM-DD'),
+        end: moment().add(100, 'years').format('YYYY-MM-DD')
       },
-      {
-        title: 'Meeting',
-        start: '2017-02-12T10:30:00',
-        end: '2017-02-12T12:30:00'
+      eventConstraint: {
+        start: moment().format('YYYY-MM-DD'),
+        end: moment().add(100, 'years').format('YYYY-MM-DD')
       },
-      {
-        title: 'Lunch',
-        start: '2017-02-12T12:00:00'
-      },
-      {
-        title: 'Meeting',
-        start: '2017-02-12T14:30:00'
-      },
-      {
-        title: 'Happy Hour',
-        start: '2017-02-12T17:30:00'
-      },
-      {
-        title: 'Dinner',
-        start: '2017-02-12T20:00:00'
-      },
-      {
-        title: 'Birthday Party',
-        start: '2017-02-13T07:00:00'
-      },
-      {
-        title: 'Click for Google',
-        url: 'http://google.com/',
-        start: '2017-02-28'
-      }
-    ]
-  };
+      events: []
+    };
+  }
 
   addEvent() {
-    this.modal.open(AddEventModalComponent, overlayConfigFactory({}, AddEventModalContext));
+    this.modal.open(AddEventModalComponent, overlayConfigFactory({}, EventModalContext));
+  }
+
+  showEvent(event: Event) {
+    this.modal.open(ShowEventModalComponent, overlayConfigFactory({event}, ShowEventModalContext));
   }
 
   onEmitRooms(roomIds: number[]) {
@@ -135,7 +118,7 @@ export class FullCalendarComponent implements OnInit, OnDestroy {
     /**
      * show loading icon
      */
-    this.isRefreshing = true;
+    this.isFullCalendarLoading = true;
 
     /**
      * reset evnets
@@ -145,19 +128,35 @@ export class FullCalendarComponent implements OnInit, OnDestroy {
     /**
      * disable room filtering buttons
      */
-    this.roomFilterComp.doLoading(true);
+    this.roomFilter.doLoading(true);
 
     this.eventService.getEvent(roomIds).subscribe(events => {
 
+      this.events = [];
+
       events.map(event => {
         this.events.push(new Event(event));
-        this.isRefreshing = false;
       });
+
+      /**
+       * clear old events
+       */
+      this.fullCalendar.fullCalendar( 'removeEventSources');
+
+      /**
+       * update calendar
+       */
+      this.fullCalendar.fullCalendar('renderEvents', this.events, true);
+
+      /**
+       * stop loading
+       */
+      this.isFullCalendarLoading = false;
 
       /**
        * enable room filtering buttons
        */
-      this.roomFilterComp.doLoading(false);
+      this.roomFilter.doLoading(false);
     });
   }
 }
