@@ -14,6 +14,7 @@ import { AddEventModalComponent } from './full-calendar/add-event-modal/add-even
 import { RoomFilterComponent } from './full-calendar/room-filter/room-filter.component';
 import { ShowEventModalComponent } from './full-calendar/show-event-modal/show-event-modal.component';
 import { ConfirmCancelModalComponent } from './full-calendar/show-event-modal/confirm-cancel-modal.component';
+import {SimpleNotificationsModule, NotificationsService} from "angular2-notifications";
 
 @NgModule({
   declarations: [
@@ -37,9 +38,12 @@ import { ConfirmCancelModalComponent } from './full-calendar/show-event-modal/co
     HttpModule,
     BrowserModule,
     ModalModule.forRoot(),
-    BootstrapModalModule
+    BootstrapModalModule,
+    SimpleNotificationsModule.forRoot()
   ],
-  providers: [],
+  providers: [
+    NotificationsService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

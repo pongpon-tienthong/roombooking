@@ -4,6 +4,7 @@ import {ConfirmCancelModalContext} from "./confirm-cancel-modal-context";
 import {EventService} from "../shared/event.service";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Event} from "../shared/event";
+import {NotificationsService} from "angular2-notifications";
 
 @Component({
   selector: 'app-confirm-cancel-modal',
@@ -20,6 +21,7 @@ export class ConfirmCancelModalComponent implements OnInit, CloseGuard, ModalCom
   constructor(public dialog: DialogRef<ConfirmCancelModalContext>,
               protected fb: FormBuilder,
               protected eventService: EventService,
+              private noticationService: NotificationsService
   ) {
   }
 
@@ -41,6 +43,12 @@ export class ConfirmCancelModalComponent implements OnInit, CloseGuard, ModalCom
 
       // TODO: return the result here when API is ready
       this.closeDialog();
+
+      // TODO: assign res to notification
+      this.noticationService.success(
+        'Some Title',
+        'Some Content'
+      )
     });
   }
 
