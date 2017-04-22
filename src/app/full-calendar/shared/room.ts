@@ -5,7 +5,7 @@ export class Room {
   description: string;
   btnColor: string;
   status: string;
-  isSelected: boolean = false;
+  isSelected: boolean;
 
   constructor(obj?: any) {
     this.id           = obj && obj.id           || null;
