@@ -1,16 +1,17 @@
-import { Injectable } from '@angular/core';
-import { Http, Response } from "@angular/http";
-import { Observable } from "rxjs";
+import {Injectable} from '@angular/core';
+import {Http, Response} from "@angular/http";
+import {Observable} from "rxjs";
+import {environment} from "../../../environments/environment";
 
 @Injectable()
 export class RoomService {
 
-  private url: string = 'http://58cccb6f88d2f01200229ef0.mockapi.io/api/v1/room';
+  private url;
 
   constructor(private http: Http) {
+    this.url = `${environment.roombookingApi}/room`
   }
 
-  // TODO: add err handler
   getAllRooms(): Observable<any> {
     return this.http.get(this.url, {}).map((res: Response) => res.json());
   }
