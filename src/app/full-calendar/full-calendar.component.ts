@@ -1,4 +1,4 @@
-import {Component, OnInit, OnDestroy, ViewChild} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {overlayConfigFactory} from 'angular2-modal';
 import {Modal} from 'angular2-modal/plugins/bootstrap';
 import {AddEventModalComponent} from './add-event-modal/add-event-modal.component';
@@ -18,7 +18,7 @@ import {ShowEventModalContext} from "./show-event-modal/show-event-modal-context
   styleUrls: ['./full-calendar.component.css'],
   providers: [Modal, EventService]
 })
-export class FullCalendarComponent implements OnInit, OnDestroy {
+export class FullCalendarComponent implements OnInit {
 
   isFullCalendarLoading: boolean = true;
   events: Event[] = [];
@@ -62,10 +62,6 @@ export class FullCalendarComponent implements OnInit, OnDestroy {
        */
       this.isFullCalendarLoading = false;
     });
-  }
-
-  // TODO: unsubscribe if necessary
-  ngOnDestroy() {
   }
 
   setCalendarOption() {

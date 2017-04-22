@@ -3,7 +3,7 @@ import {RoomService} from "../../service/room.service";
 import {Room} from "../../model/room";
 import {Store} from "@ngrx/store";
 import {State} from "../../reducer";
-import {ADD_ROOM} from "../../action/room";
+import {ADD_ROOM, SELECT_ALL_ROOMS, SELECT_ROOM} from "../../action/room";
 
 
 @Component({
@@ -40,37 +40,24 @@ export class RoomFilterComponent implements OnInit {
     });
 
     this.roomService.getAllRooms().subscribe(
-      res => {
-        this.store.dispatch({ type: ADD_ROOM, payload: res});
+      rooms => {
+        this.store.dispatch({ type: ADD_ROOM, payload: rooms});
         this.isLoading = false;
         this.isInitRoomFilter = false;
       }
     );
   }
 
-  // TODO: use debounce instead of loading animation
   selectRoom(room: Room) {
 
     /**
-     * if 'All Rooms' btn is selected, then deselect other buttons.
+     * Select 'All rooms'
      */
-    if (room.id === 0 && !room.isSelected) {
-      this.rooms = this.rooms.map((room) => {
-        room.isSelected = false;
-        return room;
-      })
+    if (room.id === 0) {
+      this.store.dispatch({ type: SELECT_ALL_ROOMS });
     }
 
-    /**
-     * if any btn except 'All Rooms' btn is selected
-     * while 'All Rooms' btn is still selected,
-     * then deselect 'All Rooms' btn.
-     */
-    if (room.id !== 0 && this.rooms[0].isSelected) {
-      this.rooms[0].isSelected = false;
-    }
-
-    room.isSelected = !room.isSelected;
+    this.store.dispatch({ type: SELECT_ROOM, payload: room.id });
     this.onSelectRoom();
   }
 
