@@ -8,7 +8,7 @@ export class Room {
   isSelected: boolean;
 
   constructor(obj?: any) {
-    this.id           = obj && obj.id           || null;
+    this.id           = obj && obj.id;
     this.name         = obj && obj.name         || null;
     this.capacity     = obj && obj.capacity     || null;
     this.description  = obj && obj.description  || null;
