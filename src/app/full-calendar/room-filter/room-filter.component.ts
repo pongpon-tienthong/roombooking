@@ -18,7 +18,15 @@ import { Room } from "../shared/room";
 export class RoomFilterComponent implements OnInit {
 
   rooms: Room[] = [];
-  allRoom: Room = new Room(0, 'All Rooms', 'bg-red', false);
+
+  allRoom: Room = new Room({
+    id: 0,
+    name: 'All rooms',
+    description: 'Dummy All Room Btn',
+    btnColor: 'bg-red',
+    status: 'active'
+  });
+
   isLoading: boolean = true;
   isInitRoomFilter: boolean = true;
   selectedRooms: number[];

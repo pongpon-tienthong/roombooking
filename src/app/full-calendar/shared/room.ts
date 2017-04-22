@@ -1,14 +1,19 @@
 export class Room {
   id: number;
   name: string;
+  capacity: number;
+  description: string;
   btnColor: string;
+  status: string;
   isSelected: boolean = false;
 
-
-  constructor(id: number, name: string, btnColor: string, isSelected: boolean) {
-    this.id = id;
-    this.name = name;
-    this.btnColor = btnColor;
-    this.isSelected = isSelected;
+  constructor(obj?: any) {
+    this.id           = obj && obj.id           || null;
+    this.name         = obj && obj.name         || null;
+    this.capacity     = obj && obj.capacity     || null;
+    this.description  = obj && obj.description  || null;
+    this.btnColor     = obj && obj.btnColor     || null;
+    this.status       = obj && obj.status       || null;
+    this.isSelected   = obj && obj.isSelected   || false;
   }
 }
