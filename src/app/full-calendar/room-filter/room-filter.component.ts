@@ -1,6 +1,10 @@
-import { Component, OnInit, trigger, state, transition, style, animate, EventEmitter, Output } from '@angular/core';
-import { RoomService } from "../shared/room.service";
-import { Room } from "../shared/room";
+import {Component, OnInit, trigger, state, transition, style, animate, EventEmitter, Output} from '@angular/core';
+import {RoomService} from "../../service/room.service";
+import {Room} from "../../model/room";
+import {Store} from "@ngrx/store";
+import {State} from "../../reducer";
+import {ADD_ROOM} from "../../action/room";
+
 
 @Component({
   selector: 'room-filter',
@@ -9,8 +13,8 @@ import { Room } from "../shared/room";
   providers: [RoomService],
   animations: [
     trigger('visibilityChanged', [
-      state('shown' , style({ opacity: 1 })),
-      state('hidden', style({ opacity: 0 })),
+      state('shown', style({opacity: 1})),
+      state('hidden', style({opacity: 0})),
       transition('* => *', animate('0.5s'))
     ])
   ]
@@ -19,27 +23,25 @@ export class RoomFilterComponent implements OnInit {
 
   rooms: Room[] = [];
 
-  allRoom: Room = new Room({
-    id: 0,
-    name: 'All rooms',
-    description: 'Dummy All Room Btn',
-    btnColor: 'bg-red',
-    status: 'active'
-  });
-
   isLoading: boolean = true;
   isInitRoomFilter: boolean = true;
   selectedRooms: number[];
 
   @Output() onEmitRooms = new EventEmitter<number[]>();
 
-  constructor(private roomService: RoomService) { }
+  constructor(private roomService: RoomService,
+              private store: Store<State>) {
+  }
 
   ngOnInit() {
+
+    this.store.select('rooms').subscribe(state => {
+      this.rooms = state['rooms'];
+    });
+
     this.roomService.getAllRooms().subscribe(
       res => {
-        this.rooms.push(this.allRoom);
-        this.rooms = this.rooms.concat(res);
+        this.store.dispatch({ type: ADD_ROOM, payload: res});
         this.isLoading = false;
         this.isInitRoomFilter = false;
       }
@@ -52,7 +54,7 @@ export class RoomFilterComponent implements OnInit {
     /**
      * if 'All Rooms' btn is selected, then deselect other buttons.
      */
-    if(room.id === 0 && !room.isSelected) {
+    if (room.id === 0 && !room.isSelected) {
       this.rooms = this.rooms.map((room) => {
         room.isSelected = false;
         return room;
@@ -64,7 +66,7 @@ export class RoomFilterComponent implements OnInit {
      * while 'All Rooms' btn is still selected,
      * then deselect 'All Rooms' btn.
      */
-    if(room.id !== 0 && this.rooms[0].isSelected) {
+    if (room.id !== 0 && this.rooms[0].isSelected) {
       this.rooms[0].isSelected = false;
     }
 
@@ -82,8 +84,8 @@ export class RoomFilterComponent implements OnInit {
        * if 'All Rooms' btn is selected, then return all room ids.
        */
       if (this.rooms[0].isSelected) {
-         this.selectedRooms.push(room.id);
-         return;
+        this.selectedRooms.push(room.id);
+        return;
       }
 
       if (room.isSelected) {

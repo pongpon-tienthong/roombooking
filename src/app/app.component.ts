@@ -1,5 +1,5 @@
 import {Component, Inject} from '@angular/core';
-import {NOTIFICATION_OPTIONS} from "./shared/notification-option";
+import {NOTIFICATION_OPTIONS} from "./notification-option";
 
 @Component({
   selector: 'app-root',

@@ -1,8 +1,8 @@
 import {Component, AfterViewInit, OnInit} from '@angular/core';
 import {ModalComponent, DialogRef, CloseGuard} from "angular2-modal";
-import {EventModalContext} from "../shared/event-modal-context";
+import {EventModalContext} from "../../model/event-modal-context";
 import {FormGroup, FormBuilder} from "@angular/forms";
-import {EventService} from "../shared/event.service";
+import {EventService} from "../../service/event.service";
 declare var $: any;
 
 @Component({

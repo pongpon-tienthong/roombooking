@@ -1,5 +1,5 @@
-import {Event} from "../shared/event";
-import {EventModalContext} from "../shared/event-modal-context";
+import {Event} from "../../model/event";
+import {EventModalContext} from "../../model/event-modal-context";
 
 export class ShowEventModalContext extends EventModalContext {
 

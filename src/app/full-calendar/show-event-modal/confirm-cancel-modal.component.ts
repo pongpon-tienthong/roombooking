@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {ModalComponent, CloseGuard, DialogRef} from "angular2-modal";
 import {ConfirmCancelModalContext} from "./confirm-cancel-modal-context";
-import {EventService} from "../shared/event.service";
+import {EventService} from "../../service/event.service";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {Event} from "../shared/event";
+import {Event} from "../../model/event";
 import {NotificationsService} from "angular2-notifications";
 
 @Component({

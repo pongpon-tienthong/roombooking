@@ -1,5 +1,5 @@
-import {EventModalContext} from "../shared/event-modal-context";
-import {Event} from "../shared/event";
+import {EventModalContext} from "../../model/event-modal-context";
+import {Event} from "../../model/event";
 
 export class ConfirmCancelModalContext extends EventModalContext {
 
